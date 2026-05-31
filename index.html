@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Programming — задания</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #dbe3ee;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 16px 48px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #ffffff, #eef4ff);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 32px;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 800px;
+    }
+
+    .note {
+      margin-top: 16px;
+      padding: 14px 16px;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 12px;
+      color: #9a3412;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    details {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    summary {
+      cursor: pointer;
+      padding: 18px 20px;
+      font-size: 18px;
+      font-weight: 700;
+      list-style: none;
+      outline: none;
+      user-select: none;
+      background: #f8fbff;
+      border-bottom: 1px solid var(--border);
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .content {
+      padding: 18px 20px 20px;
+    }
+
+    .section-title {
+      margin: 0 0 10px;
+      font-size: 16px;
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin: 8px 0;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+
+    .two-columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px 24px;
+    }
+
+    .footer {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    code {
+      background: #eef2ff;
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <h1>Web Programming</h1>
+      <p>
+        Главная страница для просмотра всех HTML-заданий через GitHub Pages.
+        Нажимай на нужный раздел и открывай файлы прямо из браузера.
+      </p>
+      <div class="note">
+        <strong>Важно:</strong> файлы <code>.doc</code> не открываются как веб-страницы в GitHub Pages.
+        Они останутся в репозитории как материалы к заданиям, а HTML-файлы будут открываться по ссылкам ниже.
+      </div>
+    </header>
+
+    <main class="grid">
+
+      <details open>
+        <summary>1–10 HTML</summary>
+        <div class="content">
+          <p class="section-title">Файлы в корне</p>
+          <div class="two-columns">
+            <ul>
+              <li><a href="1.html">1.html</a></li>
+              <li><a href="2.html">2.html</a></li>
+              <li><a href="3.html">3.html</a></li>
+              <li><a href="4.html">4.html</a></li>
+              <li><a href="5.html">5.html</a></li>
+            </ul>
+            <ul>
+              <li><a href="6.html">6.html</a></li>
+              <li><a href="7.html">7.html</a></li>
+              <li><a href="8.html">8.html</a></li>
+              <li><a href="9.html">9.html</a></li>
+              <li><a href="10.html">10.html</a></li>
+            </ul>
+          </div>
+        </div>
+      </details>
+
+      <details>
+        <summary>Карты и изображения</summary>
+        <div class="content">
+          <div class="two-columns">
+            <ul>
+              <li><a href="Карта1.htm">Карта1.htm</a></li>
+              <li><a href="Карта2.htm">Карта2.htm</a></li>
+              <li><a href="Карта3.htm">Карта3.htm</a></li>
+            </ul>
+            <ul>
+              <li><a href="Картинка1.htm">Картинка1.htm</a></li>
+              <li><a href="Картинка2.htm">Картинка2.htm</a></li>
+              <li><a href="Картинка3.htm">Картинка3.htm</a></li>
+            </ul>
+          </div>
+        </div>
+      </details>
+
+      <details>
+        <summary>3-rd pool</summary>
+        <div class="content">
+          <p class="section-title">Задание 1</p>
+          <ul>
+            <li><a href="3-rd%20pool/1/index.html">3-rd pool / 1 / index.html</a></li>
+          </ul>
+
+          <p class="section-title">Задание 2</p>
+          <ul>
+            <li><a href="3-rd%20pool/2/resume.html">3-rd pool / 2 / resume.html</a></li>
+          </ul>
+
+          <p class="section-title">Задание 3</p>
+          <ul>
+            <li><a href="3-rd%20pool/3/news.html">3-rd pool / 3 / news.html</a></li>
+            <li><a href="3-rd%20pool/3/personal-site.html">3-rd pool / 3 / personal-site.html</a></li>
+            <li><a href="3-rd%20pool/3/resume-yaromir.html">3-rd pool / 3 / resume-yaromir.html</a></li>
+          </ul>
+
+          <p class="section-title">Задание 4</p>
+          <ul>
+            <li><a href="3-rd%20pool/4/feedback.html">3-rd pool / 4 / feedback.html</a></li>
+            <li><a href="3-rd%20pool/4/filter.html">3-rd pool / 4 / filter.html</a></li>
+            <li><a href="3-rd%20pool/4/register.html">3-rd pool / 4 / register.html</a></li>
+            <li><a href="3-rd%20pool/4/survey.html">3-rd pool / 4 / survey.html</a></li>
+          </ul>
+
+          <p class="section-title">Задание 5</p>
+          <ul>
+            <li><a href="3-rd%20pool/5/box-model.html">3-rd pool / 5 / box-model.html</a></li>
+            <li><a href="3-rd%20pool/5/cards.html">3-rd pool / 5 / cards.html</a></li>
+            <li><a href="3-rd%20pool/5/resume-styled.html">3-rd pool / 5 / resume-styled.html</a></li>
+            <li><a href="3-rd%20pool/5/style.css">3-rd pool / 5 / style.css</a></li>
+          </ul>
+
+          <p class="section-title">Задание 6</p>
+          <ul>
+            <li><a href="3-rd%20pool/6/box-sizing.html">3-rd pool / 6 / box-sizing.html</a></li>
+            <li><a href="3-rd%20pool/6/cards-8.html">3-rd pool / 6 / cards-8.html</a></li>
+            <li><a href="3-rd%20pool/6/catalog.html">3-rd pool / 6 / catalog.html</a></li>
+            <li><a href="3-rd%20pool/6/display.html">3-rd pool / 6 / display.html</a></li>
+            <li><a href="3-rd%20pool/6/overflow.html">3-rd pool / 6 / overflow.html</a></li>
+          </ul>
+
+          <p class="section-title">Задание 7 — Flexbox</p>
+          <ul>
+            <li><a href="3-rd%20pool/7/flex7-1-header.html">3-rd pool / 7 / flex7-1-header.html</a></li>
+            <li><a href="3-rd%20pool/7/flex7-2-center.html">3-rd pool / 7 / flex7-2-center.html</a></li>
+            <li><a href="3-rd%20pool/7/flex7-3-cards.html">3-rd pool / 7 / flex7-3-cards.html</a></li>
+            <li><a href="3-rd%20pool/7/flex7-4-team.html">3-rd pool / 7 / flex7-4-team.html</a></li>
+            <li><a href="3-rd%20pool/7/flex7-5-toolbar.html">3-rd pool / 7 / flex7-5-toolbar.html</a></li>
+          </ul>
+
+          <p class="section-title">Задание 8 — Flexbox</p>
+          <ul>
+            <li><a href="3-rd%20pool/8/flex8-1-header.html">3-rd pool / 8 / flex8-1-header.html</a></li>
+            <li><a href="3-rd%20pool/8/flex8-2-toolbar.html">3-rd pool / 8 / flex8-2-toolbar.html</a></li>
+            <li><a href="3-rd%20pool/8/flex8-3-product.html">3-rd pool / 8 / flex8-3-product.html</a></li>
+            <li><a href="3-rd%20pool/8/flex8-4-cabinet.html">3-rd pool / 8 / flex8-4-cabinet.html</a></li>
+            <li><a href="3-rd%20pool/8/flex8-5-rows.html">3-rd pool / 8 / flex8-5-rows.html</a></li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>Практика-1</summary>
+        <div class="content">
+          <p class="section-title">Документы</p>
+          <ul>
+            <li>01 Текст с форматированием.doc</li>
+            <li>02 Линейки.doc</li>
+            <li>03 Спец. символы.doc</li>
+            <li>04 Изображения и заголовки.doc</li>
+            <li>05 Многоуровневый список.doc</li>
+            <li>06 Гиперссылки.doc</li>
+          </ul>
+
+          <p class="section-title">Изображения для HTML</p>
+          <ul>
+            <li>pictures for HTML/knopka.gif</li>
+            <li>pictures for HTML/treug.gif</li>
+            <li>pictures for HTML/7chudes/...</li>
+            <li>pictures for HTML/ssilki/...</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>Практика-2</summary>
+        <div class="content">
+          <p class="section-title">Документы</p>
+          <ul>
+            <li>07 Изображения-карты.doc</li>
+            <li>08 Таблицы.doc</li>
+            <li>9 Вложенная таблица.doc</li>
+            <li>10 Формы.doc</li>
+          </ul>
+        </div>
+      </details>
+
+    </main>
+
+    <footer class="footer">
+      Сделано для удобного просмотра заданий через GitHub Pages.
+    </footer>
+  </div>
+</body>
+</html>
