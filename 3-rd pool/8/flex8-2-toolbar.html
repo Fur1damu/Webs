@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Flex Interface — Панель управления</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            padding: 30px;
+        }
+
+        /* ============================
+           Панель управления
+           ============================ */
+        .panel {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px 25px;
+            margin-bottom: 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        /* Заголовок раздела */
+        .panel-title h1 {
+            font-size: 20px;
+            color: #2c3e50;
+        }
+
+        .panel-title p {
+            font-size: 13px;
+            color: #888;
+            margin-top: 3px;
+        }
+
+        /* Блок действий справа */
+        .panel-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        /* Поиск внутри панели */
+        .panel-search input {
+            padding: 9px 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            width: 200px;
+            outline: none;
+        }
+
+        .panel-search input:focus {
+            border-color: #3498db;
+        }
+
+        /* Кнопки */
+        .btn {
+            padding: 9px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            background: white;
+            color: #555;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+
+        .btn-outline {
+            border-color: #3498db;
+            color: #3498db;
+        }
+
+        .btn:hover { background: #f0f2f5; }
+        .btn-primary:hover { background: #2980b9; }
+        .btn-outline:hover { background: #eaf4fd; }
+
+        /* Разделитель */
+        .divider {
+            width: 1px;
+            height: 28px;
+            background: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="panel">
+        <div class="panel-title">
+            <h1>Список заказов</h1>
+            <p>Всего 142 записи</p>
+        </div>
+
+        <div class="panel-actions">
+            <div class="panel-search">
+                <input type="search" placeholder="Поиск заказа...">
+            </div>
+            <div class="divider"></div>
+            <button class="btn btn-outline">Фильтр</button>
+            <button class="btn">Экспорт</button>
+            <button class="btn btn-primary">+ Создать</button>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-title">
+            <h1>Пользователи</h1>
+            <p>Активных: 38</p>
+        </div>
+
+        <div class="panel-actions">
+            <div class="panel-search">
+                <input type="search" placeholder="Найти пользователя...">
+            </div>
+            <div class="divider"></div>
+            <button class="btn">Роли</button>
+            <button class="btn btn-primary">+ Добавить</button>
+        </div>
+    </div>
+
+</body>
+</html>

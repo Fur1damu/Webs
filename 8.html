@@ -1,0 +1,150 @@
+<html>
+<head>
+  <title>Таблицы</title>
+</head>
+<body>
+
+<h2 align="center"><i>Таблицы</i></h2>
+
+<!-- Простая таблица -->
+<b>Простая таблица</b>
+<br><br>
+<table>
+  <caption align="left">&nbsp;&nbsp;&nbsp;Заголовок таблицы</caption>
+  <tr>
+    <th bgcolor="yellow" bordercolor="blue"><font color="blue">Заголовок 1</font></th>
+    <th bgcolor="yellow" bordercolor="blue"><font color="blue">Заголовок 2</font></th>
+  </tr>
+  <tr>
+    <td>Ячейка 1</td>
+    <td>Ячейка 2</td>
+  </tr>
+  <tr>
+    <td>Ячейка 3</td>
+    <td>Ячейка 4</td>
+  </tr>
+</table>
+
+<hr color="blue">
+
+<!-- В таблице много заголовков -->
+<b>В таблице много заголовков</b>
+<br><br>
+<table border="1">
+  <caption>Заголовок таблицы</caption>
+  <tr>
+    <td></td>
+    <th bgcolor="yellow"><font color="blue">Заголовок 1</font></th>
+    <th bgcolor="yellow"><font color="blue">Заголовок 2</font></th>
+  </tr>
+  <tr>
+    <th bgcolor="yellow"><font color="blue">Заголовок 3</font></th>
+    <td>Ячейка 1</td>
+    <td>Ячейка 2</td>
+  </tr>
+  <tr>
+    <th bgcolor="yellow"><font color="blue">Заголовок 4</font></th>
+    <td>Ячейка 3</td>
+    <td>Ячейка 4</td>
+  </tr>
+</table>
+
+<hr color="blue">
+
+<!-- Форматирование ячеек-заголовков -->
+<b>Форматирование ячеек-заголовков</b>
+<br><br>
+<table border="1" width="400">
+  <caption>Заголовок таблицы</caption>
+  <tr>
+    <th bgcolor="yellow" align="center">Заголовок 1</th>
+    <th bgcolor="yellow" align="center">Заголовок 2</th>
+  </tr>
+  <tr>
+    <td>Ячейка 1</td>
+    <td>Ячейка 2</td>
+  </tr>
+  <tr>
+    <td>Ячейка 3</td>
+    <td>Ячейка 4</td>
+  </tr>
+</table>
+
+<hr color="blue">
+
+<!-- Объединение ячеек - таблица 1 -->
+<b>Объединение ячеек</b>
+<br><br>
+<table border="1" width="400">
+  <tr>
+    <th bgcolor="yellow" align="center">Заголовок 1</th>
+    <th bgcolor="yellow" align="center">Заголовок 2</th>
+  </tr>
+  <tr>
+    <td rowspan="3" bgcolor="lightgreen">Ячейка 1</td>
+    <td>Ячейка 2</td>
+  </tr>
+  <tr>
+    <td>Ячейка 3</td>
+  </tr>
+  <tr>
+    <td>Ячейка 4</td>
+  </tr>
+  <tr>
+    <td colspan="2" bgcolor="cyan" align="center">Ячейка 5</td>
+  </tr>
+</table>
+
+<br>
+
+<!-- Объединение ячеек - таблица 2 -->
+<table border="1" width="400">
+  <tr>
+    <th bgcolor="yellow" align="center">Заголовок 1</th>
+    <th bgcolor="yellow" align="center">Заголовок 2</th>
+    <th bgcolor="yellow" align="center">Заголовок 3</th>
+  </tr>
+  <tr>
+    <td rowspan="3" colspan="2" bgcolor="lightgreen">Ячейка 1</td>
+    <td>Ячейка 2</td>
+  </tr>
+  <tr>
+    <td>Ячейка 3</td>
+  </tr>
+  <tr>
+    <td>Ячейка 4</td>
+  </tr>
+  <tr>
+    <td colspan="3" bgcolor="cyan" align="center">Ячейка 5</td>
+  </tr>
+</table>
+
+<hr color="blue">
+
+<!-- Вложенная таблица -->
+<b>Вложенная таблица</b>
+<br><br>
+<table border="1" width="400" bgcolor="yellow">
+  <tr>
+    <td>Таблица1</td>
+    <td>
+      <table border="1">
+        <tr>
+          <td bgcolor="red">Таблица2</td>
+          <td bgcolor="red">Ячейка 2-2</td>
+        </tr>
+        <tr>
+          <td bgcolor="red">Ячейка 3-2</td>
+          <td bgcolor="red">Ячейка 4-2</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td>Ячейка 3-1</td>
+    <td>Ячейка 4-1</td>
+  </tr>
+</table>
+
+</body>
+</html>

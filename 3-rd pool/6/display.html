@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+        }
+
+        h2 {
+            margin-top: 40px;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+
+        /* Все примеры — с подсветкой, чтобы видеть форму */
+        .demo {
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #2980b9;
+        }
+
+        /* === BLOCK === */
+        /* Каждый занимает всю ширину строки и идёт с новой строки */
+        .block {
+            display: block;
+            width: 200px;
+        }
+
+        /* === INLINE === */
+        /* Идут друг за другом, как текст. Width и height не работают. */
+        .inline {
+            display: inline;
+        }
+
+        /* === INLINE-BLOCK === */
+        /* Идут в одну строку, НО можно задать width и height */
+        .inline-block {
+            display: inline-block;
+            width: 120px;
+            height: 50px;
+            text-align: center;
+        }
+
+        /* === NONE === */
+        /* Элемент полностью убран со страницы — нет даже места под него */
+        .none {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Display</h1>
+
+
+    <h2>display: block</h2>
+    <p>Каждый блок занимает всю ширину строки и переходит на новую строку. Можно задавать width и height.</p>
+    <div class="demo block">Блок 1</div>
+    <div class="demo block">Блок 2</div>
+    <div class="demo block">Блок 3</div>
+
+
+    <h2>display: inline</h2>
+    <p>Элементы идут в одну строку, как обычный текст. Ширину и высоту задать НЕЛЬЗЯ.</p>
+    <span class="demo inline">Inline 1</span>
+    <span class="demo inline">Inline 2</span>
+    <span class="demo inline">Inline 3</span>
+
+
+    <h2>display: inline-block</h2>
+    <p>Идут в одну строку, как inline, НО при этом можно задать width и height.</p>
+    <span class="demo inline-block">Один</span>
+    <span class="demo inline-block">Два</span>
+    <span class="demo inline-block">Три</span>
+
+
+    <h2>display: none</h2>
+    <p>Элемент полностью пропадает со страницы. Ниже между этими словами должен быть блок, но его нет:</p>
+    <p>Тут до невидимого блока...</p>
+    <div class="demo none">Меня не видно!</div>
+    <p>...а тут уже после него. Между ними нет ни места, ни просвета.</p>
+
+</body>
+</html>

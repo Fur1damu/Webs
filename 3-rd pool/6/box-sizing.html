@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>box-sizing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            background-color: #f4f4f4;
+        }
+
+        h2 {
+            margin-top: 30px;
+            color: #2c3e50;
+        }
+
+        /* Линейка для наглядности — ширина 200px */
+        .ruler {
+            width: 200px;
+            height: 4px;
+            background-color: red;
+            margin-bottom: 5px;
+        }
+
+        /* Оба блока заявлены как width: 200px, padding: 20px, border: 5px */
+        .content-box,
+        .border-box {
+            width: 200px;
+            padding: 20px;
+            border: 5px solid #2c3e50;
+            background-color: #3498db;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        /* === CONTENT-BOX (по умолчанию) === */
+        /* width задаёт ширину ТОЛЬКО контента. Padding и border добавляются СВЕРХУ */
+        /* Реальная ширина = 200 + 20*2 + 5*2 = 250px */
+        .content-box {
+            box-sizing: content-box;
+        }
+
+        /* === BORDER-BOX === */
+        /* width задаёт ОБЩУЮ ширину блока. Padding и border укладываются ВНУТРЬ */
+        /* Реальная ширина = 200px ровно */
+        .border-box {
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>content-box vs border-box</h1>
+    <p>У обоих блоков заявлены одинаковые свойства: <strong>width: 200px, padding: 20px, border: 5px</strong>.</p>
+    <p>Красная линейка сверху — это ровно 200 пикселей. Сравните, насколько блоки совпадают с ней.</p>
+
+
+    <h2>box-sizing: content-box (по умолчанию)</h2>
+    <p>width — это ширина ТОЛЬКО контента. Padding и border плюсуются сверху.</p>
+    <p>Реальная ширина: 200 + 20×2 + 5×2 = <strong>250px</strong> (шире линейки).</p>
+    <div class="ruler"></div>
+    <div class="content-box">
+        Я объявлен как 200px, но реально шире.
+    </div>
+
+
+    <h2>box-sizing: border-box</h2>
+    <p>width — это ОБЩАЯ ширина блока. Padding и border входят в неё.</p>
+    <p>Реальная ширина: <strong>200px</strong> ровно — совпадает с линейкой.</p>
+    <div class="ruler"></div>
+    <div class="border-box">
+        Я объявлен как 200px и реально 200px.
+    </div>
+
+
+    <h2>Почему все используют border-box?</h2>
+    <p>Когда задаёшь width, ты обычно имеешь в виду «вот такого размера блок целиком». С content-box приходится постоянно пересчитывать с учётом padding и border. С border-box всё работает интуитивно.</p>
+    <p>Поэтому в начале CSS-файла часто пишут:</p>
+    <pre style="background: #2c3e50; color: white; padding: 15px; border-radius: 4px;">
+* {
+    box-sizing: border-box;
+}
+    </pre>
+    <p>Это применяет border-box ко всем элементам сразу.</p>
+
+</body>
+</html>

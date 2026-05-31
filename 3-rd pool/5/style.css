@@ -1,0 +1,135 @@
+/* === Селектор по тегу === */
+body {
+    background-color: #f4f4f4;
+    color: #333;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+}
+
+/* === Групповой селектор (несколько тегов сразу) === */
+h1, h2, h3 {
+    color: #2c3e50;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+
+h2 {
+    font-size: 24px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+}
+
+/* === Селектор по тегу для ссылок === */
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+/* === Псевдокласс :hover === */
+a:hover {
+    color: #e74c3c;
+    text-decoration: underline;
+}
+
+/* === Селектор по тегу === */
+header,
+main,
+footer {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* === Вложенный селектор (nav внутри которого ul) === */
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+nav ul li {
+    background-color: #3498db;
+    padding: 8px 15px;
+    border-radius: 4px;
+}
+
+/* Вложенный селектор: ссылки внутри nav */
+nav a {
+    color: white;
+}
+
+nav a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* === Селектор по классу === */
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #3498db;
+}
+
+/* === Селектор по id === */
+#contacts {
+    background-color: #ecf0f1;
+    padding: 15px;
+    border-left: 4px solid #3498db;
+}
+
+/* === Селектор по тегу для секций === */
+section {
+    margin-bottom: 25px;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+
+/* === Вложенный: article внутри section === */
+section article {
+    background-color: #fafafa;
+    padding: 10px;
+    margin: 10px 0;
+    border-left: 3px solid #95a5a6;
+}
+
+/* === Селектор по тегу === */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+}
+
+th {
+    background-color: #3498db;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* === Групповой селектор === */
+span, div {
+    padding: 5px 10px;
+    margin: 5px;
+}
+
+footer {
+    text-align: center;
+    color: #7f8c8d;
+}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Flex — Команда</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            padding: 40px 30px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 30px;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 40px;
+        }
+
+        /* ============================
+           Сетка команды
+           ============================ */
+        .team {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+        }
+
+        /* Карточка сотрудника */
+        .member {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 25px 20px;
+            width: 200px;
+            text-align: center;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Фото-аватар */
+        .member .avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: #3498db;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: white;
+        }
+
+        .member h3 {
+            font-size: 16px;
+            color: #2c3e50;
+        }
+
+        .member .role {
+            font-size: 13px;
+            color: #888;
+            flex-grow: 1;
+        }
+
+        .member button {
+            background: transparent;
+            color: #3498db;
+            border: 1px solid #3498db;
+            padding: 7px 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .member button:hover {
+            background: #3498db;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="section-title">Наша команда</h1>
+    <p class="section-subtitle">Люди, которые делают продукт</p>
+
+    <div class="team">
+
+        <div class="member">
+            <div class="avatar">😊</div>
+            <h3>Алексей Смирнов</h3>
+            <p class="role">Frontend-разработчик</p>
+            <button>Подробнее</button>
+        </div>
+
+        <div class="member">
+            <div class="avatar">👩</div>
+            <h3>Мария Козлова</h3>
+            <p class="role">UI/UX дизайнер</p>
+            <button>Подробнее</button>
+        </div>
+
+        <div class="member">
+            <div class="avatar">🧑</div>
+            <h3>Иван Петров</h3>
+            <p class="role">Backend-разработчик</p>
+            <button>Подробнее</button>
+        </div>
+
+        <div class="member">
+            <div class="avatar">👩</div>
+            <h3>Ольга Иванова</h3>
+            <p class="role">Менеджер проектов</p>
+            <button>Подробнее</button>
+        </div>
+
+        <div class="member">
+            <div class="avatar">🧔</div>
+            <h3>Дмитрий Фёдоров</h3>
+            <p class="role">DevOps инженер</p>
+            <button>Подробнее</button>
+        </div>
+
+        <div class="member">
+            <div class="avatar">👱</div>
+            <h3>Анна Сидорова</h3>
+            <p class="role">QA инженер</p>
+            <button>Подробнее</button>
+        </div>
+
+    </div>
+
+</body>
+</html>

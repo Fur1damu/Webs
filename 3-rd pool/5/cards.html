@@ -1,0 +1,147 @@
+<html lang="ru">
+<head>
+    <title>Карточки</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        /* Контейнер для карточек */
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        /* Общий стиль карточки */
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            width: 280px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Заголовок карточки */
+        .card-title {
+            font-size: 20px;
+            color: #2c3e50;
+            margin: 0 0 10px 0;
+        }
+
+        /* Текст в карточке */
+        .card-text {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Кнопка */
+        .card-button {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .card-button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Аватар пользователя */
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto 10px;
+        }
+
+        /* Цена товара */
+        .product-price {
+            font-size: 22px;
+            color: #e74c3c;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        /* Картинка товара */
+        .product-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        /* Дата статьи */
+        .article-date {
+            color: #95a5a6;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        /* Ссылка читать дальше */
+        .article-link {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .article-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Три карточки</h1>
+
+    <div class="cards">
+
+        <!-- Карточка пользователя -->
+        <div class="card">
+            <img class="user-avatar" src="photo.jpg" alt="Аватар пользователя">
+            <h2 class="card-title">Яромир Уколов</h2>
+            <p class="card-text">Начинающий фронтенд-разработчик из Южно-Сахалинска. Изучает HTML, CSS и JavaScript.</p>
+            <p class="card-text">📍 Южно-Сахалинск</p>
+            <a class="card-button" href="#">Написать</a>
+        </div>
+
+        <!-- Карточка товара -->
+        <div class="card">
+            <img class="product-image" src="https://via.placeholder.com/280x150" alt="Картинка товара">
+            <h2 class="card-title">Беспроводные наушники</h2>
+            <p class="card-text">Качественный звук, до 30 часов работы без подзарядки.</p>
+            <p class="product-price">5 990 ₽</p>
+            <button class="card-button">В корзину</button>
+        </div>
+
+        <!-- Карточка статьи -->
+        <div class="card">
+            <h2 class="card-title">Что такое HTML</h2>
+            <p class="article-date">📅 28 апреля 2026</p>
+            <p class="card-text">Разбираемся, что такое язык разметки и зачем он нужен веб-разработчику.</p>
+            <a class="article-link" href="#">Читать дальше →</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

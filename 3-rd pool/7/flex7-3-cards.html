@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Flex — Сетка карточек</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            padding: 30px;
+        }
+
+        h1 {
+            margin-bottom: 25px;
+            color: #2c3e50;
+        }
+
+        /* ============================
+           Сетка — flex с переносом
+           ============================ */
+        .grid {
+            display: flex;
+            flex-wrap: wrap;           /* перенос на новую строку */
+            gap: 20px;                 /* отступы между карточками */
+        }
+
+        /* Карточка: 5 в ряд (вычитаем gap вручную через calc) */
+        .card {
+            /* (100% - 4 отступа по 20px) / 5 карточек = ~18% */
+            width: calc(20% - 16px);
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .card .num {
+            font-size: 36px;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .card h3 {
+            font-size: 16px;
+            color: #2c3e50;
+        }
+
+        .card p {
+            font-size: 13px;
+            color: #888;
+            flex-grow: 1;
+        }
+
+        .card button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .card button:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>10 карточек — flex сетка</h1>
+
+    <div class="grid">
+        <div class="card"><span class="num">01</span><h3>Карточка</h3><p>Текст описания</p><button>Открыть</button></div>
+        <div class="card"><span class="num">02</span><h3>Карточка</h3><p>Немного длиннее текст описания</p><button>Открыть</button></div>
+        <div class="card"><span class="num">03</span><h3>Карточка</h3><p>Текст</p><button>Открыть</button></div>
+        <div class="card"><span class="num">04</span><h3>Карточка</h3><p>Текст описания для карточки</p><button>Открыть</button></div>
+        <div class="card"><span class="num">05</span><h3>Карточка</h3><p>Текст</p><button>Открыть</button></div>
+        <div class="card"><span class="num">06</span><h3>Карточка</h3><p>Описание содержимого</p><button>Открыть</button></div>
+        <div class="card"><span class="num">07</span><h3>Карточка</h3><p>Текст</p><button>Открыть</button></div>
+        <div class="card"><span class="num">08</span><h3>Карточка</h3><p>Длинное описание карточки номер восемь</p><button>Открыть</button></div>
+        <div class="card"><span class="num">09</span><h3>Карточка</h3><p>Текст</p><button>Открыть</button></div>
+        <div class="card"><span class="num">10</span><h3>Карточка</h3><p>Финальная карточка</p><button>Открыть</button></div>
+    </div>
+
+</body>
+</html>

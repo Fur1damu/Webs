@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+</head>
+<body>
+
+    <header>
+        <h1>Регистрация</h1>
+    </header>
+
+    <main>
+        <form action="#" method="post">
+
+            <p>
+                <label for="firstname">Имя:</label><br>
+                <input type="text" id="firstname" name="firstname" required>
+            </p>
+
+            <p>
+                <label for="lastname">Фамилия:</label><br>
+                <input type="text" id="lastname" name="lastname" required>
+            </p>
+
+            <p>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required>
+            </p>
+
+            <p>
+                <label for="phone">Телефон:</label><br>
+                <input type="tel" id="phone" name="phone" placeholder="+7 999 123 45 67" required>
+            </p>
+
+            <p>
+                <label for="password">Пароль:</label><br>
+                <input type="password" id="password" name="password" minlength="6" required>
+            </p>
+
+            <p>
+                <label for="password2">Подтверждение пароля:</label><br>
+                <input type="password" id="password2" name="password2" minlength="6" required>
+            </p>
+
+            <p>
+                <label for="birthday">Дата рождения:</label><br>
+                <input type="date" id="birthday" name="birthday" required>
+            </p>
+
+            <fieldset>
+                <legend>Пол</legend>
+                <p>
+                    <input type="radio" id="male" name="gender" value="male" required>
+                    <label for="male">Мужской</label>
+                </p>
+                <p>
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female">Женский</label>
+                </p>
+            </fieldset>
+
+            <p>
+                <input type="checkbox" id="agree" name="agree" required>
+                <label for="agree">Согласен с условиями</label>
+            </p>
+
+            <p>
+                <button type="submit">Зарегистрироваться</button>
+                <button type="reset">Очистить</button>
+            </p>
+
+        </form>
+    </main>
+
+    <footer>
+        <p>© 2026</p>
+    </footer>
+
+</body>
+</html>

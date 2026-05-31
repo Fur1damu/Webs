@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Flex Interface — Шапка</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+        }
+
+        /* ============================
+           Шапка — три зоны: лого | меню+поиск | вход
+           ============================ */
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 0 30px;
+            height: 64px;
+
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        /* Логотип — не сжимается */
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #3498db;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        /* Меню — в строку */
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+
+        .nav a {
+            color: #555;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .nav a:hover {
+            background: #f0f2f5;
+            color: #3498db;
+        }
+
+        /* Поиск занимает всё свободное место между меню и кнопкой */
+        .search {
+            flex-grow: 1;
+            display: flex;
+        }
+
+        .search input {
+            width: 100%;
+            padding: 9px 14px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search input:focus {
+            border-color: #3498db;
+        }
+
+        /* Кнопки входа — не сжимаются */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .btn {
+            padding: 9px 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            background: white;
+            color: #555;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+
+        .btn:hover { background: #f0f2f5; }
+        .btn-primary:hover { background: #2980b9; }
+
+        /* Контент под шапкой */
+        .content {
+            padding: 40px 30px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <a class="logo" href="#">MySite</a>
+
+        <nav class="nav">
+            <a href="#">Каталог</a>
+            <a href="#">О нас</a>
+            <a href="#">Блог</a>
+            <a href="#">Контакты</a>
+        </nav>
+
+        <div class="search">
+            <input type="search" placeholder="Поиск по сайту...">
+        </div>
+
+        <div class="header-actions">
+            <button class="btn">Регистрация</button>
+            <button class="btn btn-primary">Войти</button>
+        </div>
+    </header>
+
+    <div class="content">
+        Страница. Логотип и меню — слева. Поиск — тянется по центру. Кнопки — справа.
+    </div>
+
+</body>
+</html>

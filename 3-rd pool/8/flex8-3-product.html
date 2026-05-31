@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Flex Interface — Карточка товара</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* ============================
+           Карточка товара
+           Основной flex — горизонтальный: фото | инфо
+           ============================ */
+        .product-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            overflow: hidden;
+            width: 700px;
+
+            /* Фото слева, инфо справа */
+            display: flex;
+        }
+
+        /* Фото */
+        .product-image {
+            width: 280px;
+            flex-shrink: 0;
+            background: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+        }
+
+        /* Правая часть — вертикальный flex */
+        .product-info {
+            padding: 25px;
+            flex-grow: 1;
+
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Верхняя часть: название + бейдж */
+        .product-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .product-header h1 {
+            font-size: 20px;
+            color: #2c3e50;
+        }
+
+        .badge {
+            background: #2ecc71;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* Рейтинг */
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stars { color: #f39c12; font-size: 16px; }
+
+        .rating-text { color: #888; font-size: 13px; }
+
+        /* Описание */
+        .product-desc {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        /* Характеристики: две колонки */
+        .specs {
+            display: flex;
+            gap: 20px;
+            font-size: 13px;
+        }
+
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .spec-label { color: #999; }
+        .spec-value { color: #2c3e50; font-weight: bold; }
+
+        /* Нижняя часть: цена + кнопки */
+        .product-footer {
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        /* Блок цены */
+        .price-block {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .price {
+            font-size: 26px;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .price-old {
+            font-size: 13px;
+            color: #aaa;
+            text-decoration: line-through;
+        }
+
+        /* Кнопки действий */
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            border: 1px solid #ddd;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+
+        .btn-primary:hover { background: #2980b9; }
+        .btn:hover { background: #f5f5f5; }
+    </style>
+</head>
+<body>
+
+    <div class="product-card">
+
+        <!-- Фото -->
+        <div class="product-image">🎧</div>
+
+        <!-- Правая часть -->
+        <div class="product-info">
+
+            <!-- flex 1: название и статус -->
+            <div class="product-header">
+                <h1>Беспроводные наушники Sony WH-1000XM5</h1>
+                <span class="badge">В наличии</span>
+            </div>
+
+            <!-- flex 2: рейтинг -->
+            <div class="rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-text">4.9 · 312 отзыва</span>
+            </div>
+
+            <!-- Описание -->
+            <p class="product-desc">
+                Флагманские наушники с лучшим в отрасли шумоподавлением.
+                30 часов автономной работы, мультиточечное подключение и 
+                исключительный звук.
+            </p>
+
+            <!-- flex 3: характеристики -->
+            <div class="specs">
+                <div class="spec-item">
+                    <span class="spec-label">Бренд</span>
+                    <span class="spec-value">Sony</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Тип</span>
+                    <span class="spec-value">Накладные</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Батарея</span>
+                    <span class="spec-value">30 ч</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Связь</span>
+                    <span class="spec-value">Bluetooth 5.2</span>
+                </div>
+            </div>
+
+            <!-- flex 4: цена + кнопки -->
+            <div class="product-footer">
+                <div class="price-block">
+                    <span class="price">26 990 ₽</span>
+                    <span class="price-old">31 990 ₽</span>
+                </div>
+                <div class="product-actions">
+                    <button class="btn">♡ В избранное</button>
+                    <button class="btn btn-primary">В корзину</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

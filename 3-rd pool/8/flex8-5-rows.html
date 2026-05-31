@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Flex Interface — Строки интерфейса</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            padding: 30px;
+        }
+
+        h2 {
+            font-size: 16px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 30px 0 10px;
+        }
+
+        h2:first-child { margin-top: 0; }
+
+        /* Обёртка секции */
+        .list {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* ============================
+           Базовая строка
+           Принцип: основная инфо слева (flex-grow:1),
+           второстепенная/кнопки справа (flex-shrink:0)
+           ============================ */
+        .row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 14px 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .row:last-child { border-bottom: none; }
+
+        /* Левая часть тянется */
+        .row-main { flex-grow: 1; }
+        /* Правая часть не сжимается */
+        .row-side { flex-shrink: 0; display: flex; align-items: center; gap: 10px; }
+
+        /* ============================
+           Строка товара в корзине
+           ============================ */
+        .cart-img {
+            width: 60px;
+            height: 60px;
+            background: #e0e0e0;
+            border-radius: 6px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+        }
+
+        .cart-name { font-size: 15px; color: #2c3e50; margin-bottom: 4px; }
+        .cart-meta { font-size: 12px; color: #aaa; }
+        .cart-price { font-size: 18px; font-weight: bold; color: #2c3e50; }
+
+        .qty-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .qty-control button {
+            width: 30px;
+            height: 30px;
+            background: #f5f5f5;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .qty-control span { font-size: 14px; min-width: 20px; text-align: center; }
+
+        .btn-remove { background: none; border: none; color: #ccc; cursor: pointer; font-size: 18px; }
+        .btn-remove:hover { color: #e74c3c; }
+
+        /* ============================
+           Строка пользователя
+           ============================ */
+        .user-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #3498db;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .user-name { font-size: 15px; color: #2c3e50; margin-bottom: 3px; }
+        .user-email { font-size: 12px; color: #aaa; }
+
+        .status-badge {
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .status-active { background: #e8f8f0; color: #2ecc71; }
+        .status-inactive { background: #f5f5f5; color: #aaa; }
+
+        .btn-sm {
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 13px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            background: white;
+        }
+
+        .btn-sm:hover { background: #f5f5f5; }
+
+        /* ============================
+           Строка уведомления
+           ============================ */
+        .notif-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .notif-success { background: #e8f8f0; }
+        .notif-warning { background: #fef3e0; }
+        .notif-error   { background: #fde8e8; }
+        .notif-info    { background: #eaf4fd; }
+
+        .notif-title { font-size: 14px; color: #2c3e50; margin-bottom: 3px; }
+        .notif-text  { font-size: 12px; color: #888; }
+        .notif-time  { font-size: 12px; color: #bbb; }
+
+        .unread-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #3498db;
+        }
+
+        /* ============================
+           Строка заказа
+           ============================ */
+        .order-num  { font-size: 15px; font-weight: bold; color: #2c3e50; margin-bottom: 3px; }
+        .order-meta { font-size: 12px; color: #aaa; }
+        .order-price{ font-size: 16px; font-weight: bold; color: #2c3e50; }
+
+        .order-status {
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .status-new       { background: #eaf4fd; color: #3498db; }
+        .status-delivery  { background: #fef3e0; color: #f39c12; }
+        .status-done      { background: #e8f8f0; color: #2ecc71; }
+        .status-cancelled { background: #fde8e8; color: #e74c3c; }
+    </style>
+</head>
+<body>
+
+    <!-- ==============================
+         Строки товара в корзине
+         ============================== -->
+    <h2>Строки корзины</h2>
+    <div class="list">
+
+        <div class="row">
+            <div class="cart-img">🎧</div>
+            <div class="row-main">
+                <div class="cart-name">Наушники Sony WH-1000XM5</div>
+                <div class="cart-meta">Цвет: чёрный · Гарантия: 1 год</div>
+            </div>
+            <div class="row-side">
+                <div class="qty-control">
+                    <button>−</button>
+                    <span>1</span>
+                    <button>+</button>
+                </div>
+                <span class="cart-price">26 990 ₽</span>
+                <button class="btn-remove">✕</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="cart-img">⌨️</div>
+            <div class="row-main">
+                <div class="cart-name">Клавиатура Keychron K2</div>
+                <div class="cart-meta">Переключатели: Blue</div>
+            </div>
+            <div class="row-side">
+                <div class="qty-control">
+                    <button>−</button>
+                    <span>2</span>
+                    <button>+</button>
+                </div>
+                <span class="cart-price">14 980 ₽</span>
+                <button class="btn-remove">✕</button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ==============================
+         Строки пользователей
+         ============================== -->
+    <h2>Строки пользователей</h2>
+    <div class="list">
+
+        <div class="row">
+            <div class="user-avatar">ЯУ</div>
+            <div class="row-main">
+                <div class="user-name">Яромир Уколов</div>
+                <div class="user-email">ukolovyaromir@gmail.com</div>
+            </div>
+            <div class="row-side">
+                <span class="status-badge status-active">Активен</span>
+                <button class="btn-sm">Профиль</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="user-avatar" style="background:#2ecc71">АС</div>
+            <div class="row-main">
+                <div class="user-name">Алексей Смирнов</div>
+                <div class="user-email">alex@example.com</div>
+            </div>
+            <div class="row-side">
+                <span class="status-badge status-inactive">Неактивен</span>
+                <button class="btn-sm">Профиль</button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ==============================
+         Строки уведомлений
+         ============================== -->
+    <h2>Строки уведомлений</h2>
+    <div class="list">
+
+        <div class="row">
+            <div class="notif-icon notif-success">✅</div>
+            <div class="row-main">
+                <div class="notif-title">Заказ доставлен</div>
+                <div class="notif-text">Заказ №4521 успешно доставлен</div>
+            </div>
+            <div class="row-side">
+                <span class="notif-time">2 мин назад</span>
+                <div class="unread-dot"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="notif-icon notif-warning">⚠️</div>
+            <div class="row-main">
+                <div class="notif-title">Товар заканчивается</div>
+                <div class="notif-text">Наушники Sony: осталось 3 штуки</div>
+            </div>
+            <div class="row-side">
+                <span class="notif-time">1 час назад</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="notif-icon notif-info">💬</div>
+            <div class="row-main">
+                <div class="notif-title">Новый отзыв</div>
+                <div class="notif-text">Пользователь оставил отзыв на клавиатуру</div>
+            </div>
+            <div class="row-side">
+                <span class="notif-time">3 часа назад</span>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ==============================
+         Строки заказов
+         ============================== -->
+    <h2>Строки заказов</h2>
+    <div class="list">
+
+        <div class="row">
+            <div class="row-main">
+                <div class="order-num">Заказ №4521</div>
+                <div class="order-meta">Иван Петров · 2 товара</div>
+            </div>
+            <div class="row-side">
+                <span class="order-status status-done">Доставлен</span>
+                <span class="order-price">26 990 ₽</span>
+                <button class="btn-sm">Детали</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="row-main">
+                <div class="order-num">Заказ №4520</div>
+                <div class="order-meta">Мария Козлова · 1 товар</div>
+            </div>
+            <div class="row-side">
+                <span class="order-status status-delivery">В доставке</span>
+                <span class="order-price">7 490 ₽</span>
+                <button class="btn-sm">Детали</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="row-main">
+                <div class="order-num">Заказ №4519</div>
+                <div class="order-meta">Яромир Уколов · 3 товара</div>
+            </div>
+            <div class="row-side">
+                <span class="order-status status-new">Новый</span>
+                <span class="order-price">43 480 ₽</span>
+                <button class="btn-sm">Детали</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="row-main">
+                <div class="order-num">Заказ №4518</div>
+                <div class="order-meta">Ольга Иванова · 1 товар</div>
+            </div>
+            <div class="row-side">
+                <span class="order-status status-cancelled">Отменён</span>
+                <span class="order-price">5 990 ₽</span>
+                <button class="btn-sm">Детали</button>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

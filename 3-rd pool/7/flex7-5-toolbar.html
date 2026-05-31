@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Flex — Панель действий</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            padding: 30px;
+        }
+
+        /* ============================
+           Панель действий
+           ============================ */
+        .toolbar {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px 24px;
+
+            display: flex;
+            align-items: center;       /* по вертикали */
+            justify-content: space-between; /* заголовок слева, кнопки справа */
+        }
+
+        .toolbar h2 {
+            font-size: 20px;
+            color: #2c3e50;
+        }
+
+        /* Группа кнопок справа */
+        .toolbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Обычная кнопка */
+        .btn {
+            padding: 9px 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            background: white;
+            color: #555;
+        }
+
+        .btn:hover {
+            background: #f0f2f5;
+        }
+
+        /* Главная кнопка — выделена цветом */
+        .btn-primary {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+            border-color: #2980b9;
+        }
+
+        /* Опасная кнопка */
+        .btn-danger {
+            color: #e74c3c;
+            border-color: #e74c3c;
+        }
+
+        .btn-danger:hover {
+            background: #e74c3c;
+            color: white;
+        }
+
+        /* Демо — несколько панелей */
+        .page-title {
+            font-size: 14px;
+            color: #888;
+            margin: 30px 0 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <p class="page-title">Пример 1 — стандартная панель</p>
+    <div class="toolbar">
+        <h2>Список пользователей</h2>
+        <div class="toolbar-actions">
+            <button class="btn">Экспорт</button>
+            <button class="btn">Фильтр</button>
+            <button class="btn btn-primary">+ Добавить</button>
+        </div>
+    </div>
+
+    <p class="page-title">Пример 2 — с кнопкой удаления</p>
+    <div class="toolbar">
+        <h2>Настройки проекта</h2>
+        <div class="toolbar-actions">
+            <button class="btn btn-danger">Удалить</button>
+            <button class="btn">Отмена</button>
+            <button class="btn btn-primary">Сохранить</button>
+        </div>
+    </div>
+
+    <p class="page-title">Пример 3 — панель раздела</p>
+    <div class="toolbar">
+        <h2>Мои заказы</h2>
+        <div class="toolbar-actions">
+            <button class="btn">История</button>
+            <button class="btn btn-primary">Новый заказ</button>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Фильтр каталога</title>
+</head>
+<body>
+
+    <header>
+        <h1>Фильтр каталога</h1>
+    </header>
+
+    <main>
+        <form action="#" method="get">
+
+            <p>
+                <label for="search">Поиск:</label><br>
+                <input type="search" id="search" name="search" placeholder="Введите название">
+            </p>
+
+            <p>
+                <label for="category">Категория:</label><br>
+                <select id="category" name="category">
+                    <option value="">Все категории</option>
+                    <option value="phones">Телефоны</option>
+                    <option value="laptops">Ноутбуки</option>
+                    <option value="tablets">Планшеты</option>
+                    <option value="accessories">Аксессуары</option>
+                </select>
+            </p>
+
+            <p>
+                <label for="sort">Сортировка:</label><br>
+                <select id="sort" name="sort">
+                    <option value="popular">По популярности</option>
+                    <option value="price-asc">Цена по возрастанию</option>
+                    <option value="price-desc">Цена по убыванию</option>
+                    <option value="new">Сначала новые</option>
+                </select>
+            </p>
+
+            <fieldset>
+                <legend>Цена, ₽</legend>
+                <p>
+                    <label for="price-min">От:</label>
+                    <input type="number" id="price-min" name="price-min" min="0" value="0">
+                </p>
+                <p>
+                    <label for="price-max">До:</label>
+                    <input type="number" id="price-max" name="price-max" min="0" value="100000">
+                </p>
+            </fieldset>
+
+            <fieldset>
+                <legend>Бренд</legend>
+                <p>
+                    <input type="checkbox" id="brand-apple" name="brand" value="apple">
+                    <label for="brand-apple">Apple</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="brand-samsung" name="brand" value="samsung">
+                    <label for="brand-samsung">Samsung</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="brand-xiaomi" name="brand" value="xiaomi">
+                    <label for="brand-xiaomi">Xiaomi</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="brand-huawei" name="brand" value="huawei">
+                    <label for="brand-huawei">Huawei</label>
+                </p>
+            </fieldset>
+
+            <fieldset>
+                <legend>Состояние</legend>
+                <p>
+                    <input type="radio" id="cond-new" name="condition" value="new" checked>
+                    <label for="cond-new">Новый</label>
+                </p>
+                <p>
+                    <input type="radio" id="cond-used" name="condition" value="used">
+                    <label for="cond-used">Б/у</label>
+                </p>
+                <p>
+                    <input type="radio" id="cond-any" name="condition" value="any">
+                    <label for="cond-any">Любое</label>
+                </p>
+            </fieldset>
+
+            <p>
+                <button type="submit">Применить</button>
+                <button type="reset">Сбросить</button>
+            </p>
+
+        </form>
+    </main>
+
+    <footer>
+        <p>© 2026</p>
+    </footer>
+
+</body>
+</html>

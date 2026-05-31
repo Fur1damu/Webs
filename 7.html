@@ -1,0 +1,50 @@
+<html>
+<head>
+  <title>Карты</title>
+</head>
+<body bgcolor="lightblue" text="black">
+
+<h2><font color="blue">Изображения-карты</font></h2>
+
+<p align="justify">
+Карта - это заданный набор областей различной формы. Заданные области карты считаются активными,
+и браузер работает с ними практически аналогично тому, как он работает с изображениями-гиперссылками.
+Так вот, изображение-карта - это обычное изображение с наложенной на него картой активных областей.
+</p>
+
+<h3><font color="blue">Примеры карт</font></h3>
+
+<p>Изображения карт иллюстрируют способы задания координат областей для переходов</p>
+
+<hr width="60%" align="left">
+
+<b>Карта 1</b><br><br>
+
+<img src="pictures for HTML/karta/smajlik.jpg" usemap="#karta1" border="1">
+
+<map name="karta1">
+  <area shape="circle" coords="95,95,75" href="Карта1.htm">
+  <area shape="poly" coords="30,180,80,155,95,170,110,155,160,180,140,210,95,195,50,210" href="Карта2.htm">
+</map>
+
+<br><br>
+<hr width="60%" align="left">
+
+<p align="justify">
+На этой странице представлены две карты, которые позволяют выполнять различные переходы.
+Для правильного функционирования страницы необходимо проверить все ссылки на файлы,
+заданные с помощью атрибутов src и href.
+</p>
+
+<hr width="60%" align="left">
+
+<b>Карта 2</b><br><br>
+
+<img src="pictures for HTML/karta/otkritka.jpg" usemap="#karta2" border="1">
+
+<map name="karta2">
+  <area shape="rect" coords="20,20,250,200" href="Карта3.htm">
+</map>
+
+</body>
+</html>

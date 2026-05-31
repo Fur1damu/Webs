@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>8 карточек</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        /* Контейнер: карточки в ряд, с переносом и одинаковыми отступами */
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* Все карточки одной ширины и высоты, контент выстраивается в колонку */
+        .card {
+            width: 250px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Картинка не вылезает за карточку */
+        .card img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .card h2 {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #2c3e50;
+        }
+
+        /* Текст занимает всё свободное место — кнопки выравниваются внизу */
+        .card p {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .card button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .card button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>8 карточек одинаковой ширины</h1>
+
+    <div class="cards">
+
+        <div class="card">
+            <img src="https://via.placeholder.com/250x140" alt="Картинка 1">
+            <h2>Карточка 1</h2>
+            <p>Короткий текст.</p>
+            <button>Подробнее</button>
+        </div>
+
+        <div class="card">
+            <img src="https://via.placeholder.com/250x140" alt="Картинка 2">
+            <h2>Карточка 2</h2>
+            <p>Текст средней длины. Тут уже несколько предложений, чтобы было что почитать.</p>
+            <button>Подробнее</button>
+        </div>
+
+        <div class="card">
+            <img src="https://via.placeholder.com/250x140" alt="Картинка 3">
+            <h2>Карточка 3</h2>
+            <p>Очень длинный текст, специально написанный, чтобы проверить, не разваливается ли карточка от количества текста. Тут много слов, абзац продолжается, и продолжается, и продолжается.</p>
+            <button>Подробнее</button>
+        </div>
+
+        <div class="card">
+            <img src="https://via.placeholder.com/250x140" alt="Картинка 4">
+            <h2>Карточка 4</h2>
+            <p>Один.</p>
+            <button>Подробнее</button>
+        </div>
+
+        <div class="card">
+            <img src="https://via.placeholder.com/250x140" alt="Картинка 5">
+            <h2>Карточка 5 с длинным заголовком тоже</h2>
+            <p>Текст для карточки 5. Достаточно обычный.</p>
+            <button>Подробнее</button>
+        </div>
+
+        <div class="card">
+            <img src="https://via.placeholder.com/250x140" alt="Картинка 6">
+            <h2>Карточка 6</h2>
+            <p>Ещё одна карточка с текстом средней длины. Несколько предложений для примера.</p>
+            <button>Подробнее</button>
+        </div>
+
+        <div class="card">
+            <img src="https://via.placeholder.com/250x140" alt="Картинка 7">
+            <h2>Карточка 7</h2>
+            <p>Текст.</p>
+            <button>Подробнее</button>
+        </div>
+
+        <div class="card">
+            <img src="https://via.placeholder.com/250x140" alt="Картинка 8">
+            <h2>Карточка 8</h2>
+            <p>Финальная карточка с текстом нормальной длины, чтобы закончить ряд красиво.</p>
+            <button>Подробнее</button>
+        </div>
+
+    </div>
+
+</body>
+</html>

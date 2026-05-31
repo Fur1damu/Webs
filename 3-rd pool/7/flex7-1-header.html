@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Flex — Шапка</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+        }
+
+        /* ============================
+           Шапка — главный flex-контейнер
+           ============================ */
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #ddd;
+            padding: 0 30px;
+            height: 60px;
+
+            display: flex;              /* включаем flex */
+            align-items: center;        /* выравниваем по вертикали */
+            gap: 30px;                  /* отступы между блоками */
+        }
+
+        /* Логотип */
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #3498db;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        /* Меню — тоже flex-контейнер внутри шапки */
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            /* Меню занимает всё свободное место,
+               прижимая кнопку входа вправо */
+            flex-grow: 1;
+        }
+
+        .nav a {
+            color: #555;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        .nav a:hover {
+            background: #f0f2f5;
+            color: #3498db;
+        }
+
+        /* Кнопка входа */
+        .btn-login {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .btn-login:hover {
+            background: #2980b9;
+        }
+
+        /* Демо-контент под шапкой */
+        .content {
+            padding: 40px 30px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <a class="logo" href="#">MySite</a>
+
+        <nav class="nav">
+            <a href="#">Главная</a>
+            <a href="#">Каталог</a>
+            <a href="#">О нас</a>
+            <a href="#">Блог</a>
+            <a href="#">Контакты</a>
+        </nav>
+
+        <button class="btn-login">Войти</button>
+    </header>
+
+    <div class="content">
+        <p>Страница под шапкой. Логотип слева, меню по центру, кнопка справа — всё в одну линию и выровнено по вертикали.</p>
+    </div>
+
+</body>
+</html>
