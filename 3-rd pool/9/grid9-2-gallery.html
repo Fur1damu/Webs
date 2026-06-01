@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Grid — Галерея</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            padding: 30px;
+        }
+
+        h1 {
+            color: white;
+            margin-bottom: 25px;
+            font-size: 26px;
+        }
+
+        /* ============================
+           Grid-галерея
+           auto-fill + minmax: колонок столько,
+           сколько влезает по 220px — сетка сама
+           адаптируется под ширину контейнера
+           ============================ */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+
+        /* Ячейка галереи */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 6px;
+            cursor: pointer;
+
+            /* Фиксированная высота — квадратные ячейки */
+            aspect-ratio: 1 / 1;
+
+            background: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Широкий элемент — растягивается на 2 колонки */
+        .gallery-item.wide {
+            grid-column: span 2;
+            aspect-ratio: 2 / 1;
+        }
+
+        /* Высокий элемент — растягивается на 2 строки */
+        .gallery-item.tall {
+            grid-row: span 2;
+            aspect-ratio: 1 / 2;
+        }
+
+        /* Заглушка-картинка с цветом и эмодзи */
+        .gallery-item .placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .placeholder {
+            transform: scale(1.1);
+        }
+
+        /* Подпись появляется при наведении */
+        .gallery-item .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 13px;
+            padding: 10px 12px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .caption {
+            transform: translateY(0);
+        }
+
+        /* Цвет фона для каждой ячейки разный */
+        .c1 { background: #1a2a3a; }
+        .c2 { background: #1a3a2a; }
+        .c3 { background: #3a1a2a; }
+        .c4 { background: #2a3a1a; }
+        .c5 { background: #3a2a1a; }
+        .c6 { background: #1a3a3a; }
+    </style>
+</head>
+<body>
+
+    <h1>Фотогалерея</h1>
+
+    <div class="gallery">
+
+        <div class="gallery-item wide c1">
+            <div class="placeholder">🌄</div>
+            <div class="caption">Закат в горах</div>
+        </div>
+
+        <div class="gallery-item c2">
+            <div class="placeholder">🌊</div>
+            <div class="caption">Океан</div>
+        </div>
+
+        <div class="gallery-item tall c3">
+            <div class="placeholder">🌲</div>
+            <div class="caption">Лес</div>
+        </div>
+
+        <div class="gallery-item c4">
+            <div class="placeholder">🏔️</div>
+            <div class="caption">Горы</div>
+        </div>
+
+        <div class="gallery-item c5">
+            <div class="placeholder">🌸</div>
+            <div class="caption">Цветение</div>
+        </div>
+
+        <div class="gallery-item c6">
+            <div class="placeholder">🦋</div>
+            <div class="caption">Бабочка</div>
+        </div>
+
+        <div class="gallery-item wide c2">
+            <div class="placeholder">🌃</div>
+            <div class="caption">Ночной город</div>
+        </div>
+
+        <div class="gallery-item c1">
+            <div class="placeholder">🏜️</div>
+            <div class="caption">Пустыня</div>
+        </div>
+
+        <div class="gallery-item c5">
+            <div class="placeholder">❄️</div>
+            <div class="caption">Зима</div>
+        </div>
+
+        <div class="gallery-item tall c4">
+            <div class="placeholder">🌺</div>
+            <div class="caption">Тропики</div>
+        </div>
+
+        <div class="gallery-item c6">
+            <div class="placeholder">🌙</div>
+            <div class="caption">Луна</div>
+        </div>
+
+        <div class="gallery-item c3">
+            <div class="placeholder">🦅</div>
+            <div class="caption">Птица</div>
+        </div>
+
+    </div>
+
+</body>
+</html>

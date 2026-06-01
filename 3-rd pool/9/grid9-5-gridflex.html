@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Grid + Flex</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+        }
+
+        /* ============================
+           GRID — общая раскладка страницы
+           Строки: header | hero | main | footer
+           ============================ */
+        .page {
+            display: grid;
+            grid-template-rows: 64px auto 1fr auto;
+            min-height: 100vh;
+        }
+
+        /* ============ ШАПКА — FLEX внутри ============ */
+        .header {
+            background: white;
+            border-bottom: 1px solid #ddd;
+            padding: 0 40px;
+
+            /* flex: элементы шапки в строку */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo { font-size: 20px; font-weight: bold; color: #3498db; }
+
+        .nav { display: flex; gap: 5px; }
+
+        .nav a {
+            color: #555;
+            text-decoration: none;
+            padding: 7px 13px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .nav a:hover { background: #f0f2f5; }
+
+        .btn {
+            padding: 8px 18px;
+            border-radius: 5px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            background: white;
+            color: #555;
+        }
+
+        .btn-primary { background: #3498db; color: white; border-color: #3498db; }
+        .btn-primary:hover { background: #2980b9; }
+
+        /* ============ HERO — FLEX внутри ============ */
+        .hero {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 70px 40px;
+
+            /* flex: текст и картинка в строку */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-text h1 { font-size: 36px; margin-bottom: 14px; }
+        .hero-text p  { opacity: 0.85; margin-bottom: 25px; line-height: 1.6; max-width: 480px; }
+
+        .hero-actions { display: flex; gap: 12px; }
+
+        .btn-white { background: white; color: #2c3e50; border: none; }
+        .btn-ghost { background: transparent; border: 1px solid white; color: white; }
+        .btn-ghost:hover { background: rgba(255,255,255,0.1); }
+
+        .hero-emoji { font-size: 100px; flex-shrink: 0; }
+
+        /* ============ MAIN — GRID внутри ============ */
+        .main {
+            padding: 40px;
+        }
+
+        /* GRID: левая колонка (фильтры) + правая (карточки) */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 25px;
+        }
+
+        /* ---- Фильтры (левая колонка) ---- */
+        .filters {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .filter-block {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 18px;
+        }
+
+        .filter-block h4 {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #888;
+            margin-bottom: 12px;
+        }
+
+        .filter-block label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+
+        /* ---- Правая часть ---- */
+        .catalog-right {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Панель сортировки — FLEX */
+        .sort-bar {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 12px 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .sort-bar span { font-size: 14px; color: #888; }
+
+        .sort-bar select {
+            padding: 6px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 13px;
+            outline: none;
+        }
+
+        /* GRID карточек — 3 колонки */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        /* ============ КАРТОЧКА ТОВАРА — FLEX внутри ============ */
+        .product-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+
+            /* FLEX — колонка: картинка → инфо → кнопки */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Картинка */
+        .product-img {
+            height: 140px;
+            background: #dde3ea;
+            font-size: 52px;
+
+            /* FLEX — центрирование иконки */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Тело карточки */
+        .product-body {
+            padding: 14px;
+            flex-grow: 1; /* тянется, прижимает футер вниз */
+
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .product-body h3 { font-size: 15px; color: #2c3e50; }
+        .product-body p  { font-size: 12px; color: #888; line-height: 1.4; flex-grow: 1; }
+
+        /* Рейтинг — FLEX */
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .stars { color: #f39c12; font-size: 13px; }
+        .rating-count { font-size: 12px; color: #aaa; }
+
+        /* Футер карточки: цена + кнопки — FLEX */
+        .product-footer {
+            padding: 12px 14px;
+            border-top: 1px solid #f0f0f0;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .product-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-icon:hover { background: #f5f5f5; }
+
+        .btn-cart {
+            padding: 7px 14px;
+            border-radius: 5px;
+            background: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .btn-cart:hover { background: #2980b9; }
+
+        /* ============ ПОДВАЛ — FLEX внутри ============ */
+        .footer {
+            background: #2c3e50;
+            color: #bdc3c7;
+            padding: 20px 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer a { color: #bdc3c7; text-decoration: none; font-size: 13px; }
+        .footer a:hover { color: white; }
+
+        .footer-links { display: flex; gap: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="page">
+
+    <!-- ШАПКА — flex -->
+    <header class="header">
+        <div class="logo">TechStore</div>
+        <nav class="nav">
+            <a href="#">Каталог</a>
+            <a href="#">О нас</a>
+            <a href="#">Блог</a>
+        </nav>
+        <button class="btn btn-primary">Войти</button>
+    </header>
+
+    <!-- HERO — flex -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Лучшая техника<br>по честным ценам</h1>
+            <p>Широкий выбор электроники с доставкой по всей России. Гарантия на все товары.</p>
+            <div class="hero-actions">
+                <button class="btn btn-white">Каталог</button>
+                <button class="btn btn-ghost">Узнать больше</button>
+            </div>
+        </div>
+        <div class="hero-emoji">🛒</div>
+    </section>
+
+    <!-- ОСНОВНАЯ ОБЛАСТЬ — grid -->
+    <main class="main">
+        <div class="main-grid">
+
+            <!-- Фильтры — левая колонка -->
+            <aside class="filters">
+
+                <div class="filter-block">
+                    <h4>Категория</h4>
+                    <label><input type="radio" name="cat" checked> Все</label>
+                    <label><input type="radio" name="cat"> Аудио</label>
+                    <label><input type="radio" name="cat"> Смартфоны</label>
+                    <label><input type="radio" name="cat"> Ноутбуки</label>
+                    <label><input type="radio" name="cat"> Аксессуары</label>
+                </div>
+
+                <div class="filter-block">
+                    <h4>Цена, ₽</h4>
+                    <label>До 10 000<input type="checkbox"></label>
+                    <label>10 000 – 50 000<input type="checkbox"></label>
+                    <label>Свыше 50 000<input type="checkbox"></label>
+                </div>
+
+                <div class="filter-block">
+                    <h4>Бренд</h4>
+                    <label><input type="checkbox"> Apple</label>
+                    <label><input type="checkbox"> Sony</label>
+                    <label><input type="checkbox"> Samsung</label>
+                    <label><input type="checkbox"> Logitech</label>
+                </div>
+
+            </aside>
+
+            <!-- Правая часть: сортировка + сетка -->
+            <div class="catalog-right">
+
+                <!-- Сортировка — flex -->
+                <div class="sort-bar">
+                    <span>Найдено: 6 товаров</span>
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span>Сортировка:</span>
+                        <select>
+                            <option>По популярности</option>
+                            <option>Цена ↑</option>
+                            <option>Цена ↓</option>
+                            <option>Новинки</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Сетка карточек — grid -->
+                <div class="products-grid">
+
+                    <!-- Каждая карточка — flex внутри -->
+                    <div class="product-card">
+                        <div class="product-img">🎧</div>
+                        <div class="product-body">
+                            <h3>Наушники Sony WH-1000XM5</h3>
+                            <p>Шумоподавление, 30 ч, Bluetooth 5.2</p>
+                            <div class="product-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(312)</span>
+                            </div>
+                        </div>
+                        <div class="product-footer">
+                            <span class="product-price">26 990 ₽</span>
+                            <div class="product-actions">
+                                <button class="btn-icon">♡</button>
+                                <button class="btn-cart">В корзину</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-img">📱</div>
+                        <div class="product-body">
+                            <h3>iPhone 15 Pro 128 Гб</h3>
+                            <p>A17 Pro, 48 Мп, USB-C, Dynamic Island</p>
+                            <div class="product-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(841)</span>
+                            </div>
+                        </div>
+                        <div class="product-footer">
+                            <span class="product-price">89 990 ₽</span>
+                            <div class="product-actions">
+                                <button class="btn-icon">♡</button>
+                                <button class="btn-cart">В корзину</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-img">⌨️</div>
+                        <div class="product-body">
+                            <h3>Клавиатура Keychron K2</h3>
+                            <p>Механическая, RGB, Blue-переключатели</p>
+                            <div class="product-rating">
+                                <span class="stars">★★★★☆</span>
+                                <span class="rating-count">(198)</span>
+                            </div>
+                        </div>
+                        <div class="product-footer">
+                            <span class="product-price">7 490 ₽</span>
+                            <div class="product-actions">
+                                <button class="btn-icon">♡</button>
+                                <button class="btn-cart">В корзину</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-img">🖥️</div>
+                        <div class="product-body">
+                            <h3>Монитор LG UltraGear 27"</h3>
+                            <p>4K IPS, 144 Гц, HDR400, G-Sync</p>
+                            <div class="product-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(423)</span>
+                            </div>
+                        </div>
+                        <div class="product-footer">
+                            <span class="product-price">34 990 ₽</span>
+                            <div class="product-actions">
+                                <button class="btn-icon">♡</button>
+                                <button class="btn-cart">В корзину</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-img">🖱️</div>
+                        <div class="product-body">
+                            <h3>Мышь Logitech MX Master 3S</h3>
+                            <p>Тихие клики, 8000 DPI, Bluetooth</p>
+                            <div class="product-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(512)</span>
+                            </div>
+                        </div>
+                        <div class="product-footer">
+                            <span class="product-price">9 990 ₽</span>
+                            <div class="product-actions">
+                                <button class="btn-icon">♡</button>
+                                <button class="btn-cart">В корзину</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-img">💻</div>
+                        <div class="product-body">
+                            <h3>MacBook Air 15" M3</h3>
+                            <p>16 Гб, 512 Гб SSD, 18 ч автономности</p>
+                            <div class="product-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(276)</span>
+                            </div>
+                        </div>
+                        <div class="product-footer">
+                            <span class="product-price">149 990 ₽</span>
+                            <div class="product-actions">
+                                <button class="btn-icon">♡</button>
+                                <button class="btn-cart">В корзину</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ПОДВАЛ — flex -->
+    <footer class="footer">
+        <span>© 2026 TechStore</span>
+        <div class="footer-links">
+            <a href="#">Политика конфиденциальности</a>
+            <a href="#">Условия использования</a>
+            <a href="#">Контакты</a>
+        </div>
+    </footer>
+
+</div>
+
+</body>
+</html>

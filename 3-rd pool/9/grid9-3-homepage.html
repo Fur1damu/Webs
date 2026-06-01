@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Grid — Главная страница</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            color: #2c3e50;
+        }
+
+        /* ============================
+           Общий layout страницы через grid:
+           строки: header | banner | features | catalog | reviews | footer
+           ============================ */
+        .page {
+            display: grid;
+            grid-template-rows: auto auto auto auto auto auto;
+            min-height: 100vh;
+        }
+
+        /* ============ ШАПКА ============ */
+        .header {
+            background: white;
+            border-bottom: 1px solid #ddd;
+            padding: 0 60px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo { font-size: 22px; font-weight: bold; color: #3498db; }
+
+        nav { display: flex; gap: 8px; }
+
+        nav a {
+            color: #555;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        nav a:hover { background: #f0f2f5; }
+
+        .btn {
+            padding: 9px 20px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-primary { background: #3498db; color: white; }
+        .btn-primary:hover { background: #2980b9; }
+        .btn-outline { background: white; border: 1px solid #3498db; color: #3498db; }
+        .btn-outline:hover { background: #eaf4fd; }
+
+        /* ============ БАННЕР ============ */
+        .banner {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 90px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .banner-text { max-width: 500px; }
+
+        .banner h1 { font-size: 40px; margin-bottom: 15px; line-height: 1.2; }
+        .banner p  { font-size: 17px; opacity: 0.85; margin-bottom: 30px; line-height: 1.6; }
+
+        .banner-actions { display: flex; gap: 12px; }
+
+        .banner-img {
+            font-size: 120px;
+            flex-shrink: 0;
+        }
+
+        /* ============ ПРЕИМУЩЕСТВА ============ */
+        .features {
+            padding: 60px;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: #888;
+            margin-bottom: 40px;
+            font-size: 15px;
+        }
+
+        /* Grid для преимуществ — 4 колонки */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 30px 20px;
+            border: 1px solid #eee;
+            border-radius: 10px;
+        }
+
+        .feature-card .icon { font-size: 40px; margin-bottom: 15px; }
+        .feature-card h3 { font-size: 16px; margin-bottom: 8px; }
+        .feature-card p  { font-size: 13px; color: #888; line-height: 1.5; }
+
+        /* ============ КАТАЛОГ ============ */
+        .catalog-section {
+            padding: 60px;
+            background: #f0f2f5;
+        }
+
+        /* Grid каталога — 4 колонки */
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            overflow: hidden;
+        }
+
+        .product-card .product-img {
+            height: 130px;
+            background: #dde3ea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+
+        .product-card .product-body { padding: 14px; }
+        .product-card h4 { font-size: 14px; margin-bottom: 6px; }
+        .product-card .price { color: #e74c3c; font-weight: bold; font-size: 16px; }
+
+        /* ============ ОТЗЫВЫ ============ */
+        .reviews {
+            padding: 60px;
+            background: white;
+        }
+
+        /* Grid отзывов — 3 колонки */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .review-card {
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 25px;
+        }
+
+        .review-stars { color: #f39c12; font-size: 18px; margin-bottom: 12px; }
+        .review-text  { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 15px; }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .review-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #3498db;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .review-name  { font-weight: bold; font-size: 14px; }
+        .review-date  { font-size: 12px; color: #aaa; }
+
+        /* ============ ПОДВАЛ ============ */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 60px;
+        }
+
+        /* Grid подвала — 4 колонки */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer h4 { margin-bottom: 15px; font-size: 15px; }
+
+        .footer ul { list-style: none; }
+        .footer ul li { margin-bottom: 8px; }
+        .footer ul li a { color: #bdc3c7; text-decoration: none; font-size: 14px; }
+        .footer ul li a:hover { color: white; }
+
+        .footer-desc { color: #bdc3c7; font-size: 14px; line-height: 1.6; margin-top: 8px; }
+
+        .footer-bottom {
+            border-top: 1px solid #34495e;
+            padding-top: 20px;
+            color: #7f8c8d;
+            font-size: 13px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="page">
+
+    <!-- ШАПКА -->
+    <header class="header">
+        <div class="logo">TechStore</div>
+        <nav>
+            <a href="#features">Преимущества</a>
+            <a href="#catalog">Каталог</a>
+            <a href="#reviews">Отзывы</a>
+            <a href="#footer">Контакты</a>
+        </nav>
+        <div style="display:flex;gap:10px;">
+            <button class="btn btn-outline">Войти</button>
+            <button class="btn btn-primary">Регистрация</button>
+        </div>
+    </header>
+
+    <!-- БАННЕР -->
+    <section class="banner">
+        <div class="banner-text">
+            <h1>Техника для работы и&nbsp;жизни</h1>
+            <p>Широкий выбор электроники по лучшим ценам. Быстрая доставка по всей России.</p>
+            <div class="banner-actions">
+                <button class="btn btn-primary">Перейти в каталог</button>
+                <button class="btn btn-outline" style="color:white;border-color:white;">Узнать больше</button>
+            </div>
+        </div>
+        <div class="banner-img">🛒</div>
+    </section>
+
+    <!-- ПРЕИМУЩЕСТВА -->
+    <section class="features" id="features">
+        <h2 class="section-title">Почему выбирают нас</h2>
+        <p class="section-sub">Мы делаем покупки удобными</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon">🚀</div>
+                <h3>Быстрая доставка</h3>
+                <p>Доставим ваш заказ в течение 1–2 дней по всей России</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🔒</div>
+                <h3>Безопасная оплата</h3>
+                <p>Все платежи защищены. Принимаем карты и SberPay</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">↩️</div>
+                <h3>Возврат 30 дней</h3>
+                <p>Не понравился товар — вернём деньги без вопросов</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🎧</div>
+                <h3>Поддержка 24/7</h3>
+                <p>Наша команда всегда на связи и готова помочь</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- КАТАЛОГ -->
+    <section class="catalog-section" id="catalog">
+        <h2 class="section-title">Популярные товары</h2>
+        <p class="section-sub">Хиты продаж этого месяца</p>
+        <div class="catalog-grid">
+            <div class="product-card">
+                <div class="product-img">🎧</div>
+                <div class="product-body"><h4>Наушники Sony</h4><div class="price">26 990 ₽</div></div>
+            </div>
+            <div class="product-card">
+                <div class="product-img">📱</div>
+                <div class="product-body"><h4>iPhone 15</h4><div class="price">89 990 ₽</div></div>
+            </div>
+            <div class="product-card">
+                <div class="product-img">⌨️</div>
+                <div class="product-body"><h4>Клавиатура Keychron</h4><div class="price">7 490 ₽</div></div>
+            </div>
+            <div class="product-card">
+                <div class="product-img">🖥️</div>
+                <div class="product-body"><h4>Монитор LG 27"</h4><div class="price">34 990 ₽</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ОТЗЫВЫ -->
+    <section class="reviews" id="reviews">
+        <h2 class="section-title">Отзывы покупателей</h2>
+        <p class="section-sub">Нам доверяют тысячи клиентов</p>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">Отличный магазин! Заказал наушники, доставили на следующий день. Упаковка идеальная, товар как на сайте.</p>
+                <div class="review-author">
+                    <div class="review-avatar">АС</div>
+                    <div>
+                        <div class="review-name">Алексей Смирнов</div>
+                        <div class="review-date">15 апреля 2026</div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">Купила MacBook, всё пришло быстро и без дефектов. Цены ниже, чем в других магазинах. Буду заказывать ещё.</p>
+                <div class="review-author">
+                    <div class="review-avatar" style="background:#2ecc71">МК</div>
+                    <div>
+                        <div class="review-name">Мария Козлова</div>
+                        <div class="review-date">3 мая 2026</div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★☆</div>
+                <p class="review-text">Хороший сервис, поддержка помогла выбрать нужную модель. Единственное — хотелось бы больше фото товара.</p>
+                <div class="review-author">
+                    <div class="review-avatar" style="background:#e74c3c">ЯУ</div>
+                    <div>
+                        <div class="review-name">Яромир Уколов</div>
+                        <div class="review-date">20 мая 2026</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПОДВАЛ -->
+    <footer class="footer" id="footer">
+        <div class="footer-grid">
+            <div>
+                <div class="logo" style="color:#3498db;font-size:20px;margin-bottom:10px;">TechStore</div>
+                <p class="footer-desc">Широкий выбор техники по лучшим ценам. Работаем с 2018 года.</p>
+            </div>
+            <div>
+                <h4>Покупателям</h4>
+                <ul>
+                    <li><a href="#">Каталог</a></li>
+                    <li><a href="#">Доставка</a></li>
+                    <li><a href="#">Возврат</a></li>
+                    <li><a href="#">Гарантия</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Компания</h4>
+                <ul>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Вакансии</a></li>
+                    <li><a href="#">Блог</a></li>
+                    <li><a href="#">Пресса</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Контакты</h4>
+                <ul>
+                    <li><a href="#">support@techstore.ru</a></li>
+                    <li><a href="#">+7 800 555 35 35</a></li>
+                    <li><a href="#">Telegram</a></li>
+                    <li><a href="#">ВКонтакте</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">© 2026 TechStore. Все права защищены.</div>
+    </footer>
+
+</div>
+
+</body>
+</html>
