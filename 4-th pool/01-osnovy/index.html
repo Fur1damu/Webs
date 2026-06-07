@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Блок 1. Основы</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="page-header">
+    <a class="back-link" href="../../index.html" target="_top">← Все работы</a>
+    <h1>Блок 1. Основы</h1>
+    <p>Переменные и условия — 6 задач на одной странице.</p>
+  </header>
+
+  <main class="tasks">
+
+    <section class="task" id="task-1">
+      <div class="task__bar"><span class="task__num">Задача 1</span><h2>Кнопка приветствия</h2></div>
+      <div class="task__body">
+        <div class="field">
+          <label class="label" for="t1-name">Ваше имя</label>
+          <input class="input" id="t1-name" type="text" placeholder="Например, Олег">
+        </div>
+        <button class="btn" id="t1-btn">Поздороваться</button>
+        <div class="result" id="t1-result"></div>
+      </div>
+    </section>
+
+    <section class="task" id="task-2">
+      <div class="task__bar"><span class="task__num">Задача 2</span><h2>Калькулятор скидки</h2></div>
+      <div class="task__body">
+        <div class="field">
+          <label class="label" for="t2-price">Цена, ₽</label>
+          <input class="input" id="t2-price" type="number" placeholder="2000">
+        </div>
+        <div class="field">
+          <label class="label" for="t2-discount">Скидка, %</label>
+          <input class="input" id="t2-discount" type="number" placeholder="10">
+        </div>
+        <button class="btn" id="t2-btn">Рассчитать</button>
+        <div class="result" id="t2-result"></div>
+      </div>
+    </section>
+
+    <section class="task" id="task-3">
+      <div class="task__bar"><span class="task__num">Задача 3</span><h2>Проверка возраста</h2></div>
+      <div class="task__body">
+        <div class="field">
+          <label class="label" for="t3-age">Возраст</label>
+          <input class="input" id="t3-age" type="number" placeholder="Введите возраст">
+        </div>
+        <button class="btn" id="t3-btn">Проверить</button>
+        <div class="result" id="t3-result"></div>
+      </div>
+    </section>
+
+    <section class="task" id="task-4">
+      <div class="task__bar"><span class="task__num">Задача 4</span><h2>Форма регистрации</h2></div>
+      <div class="task__body">
+        <div class="field">
+          <label class="label" for="t4-name">Имя</label>
+          <input class="input" id="t4-name" type="text" placeholder="Имя">
+        </div>
+        <div class="field">
+          <label class="label" for="t4-email">Email</label>
+          <input class="input" id="t4-email" type="email" placeholder="mail@example.com">
+        </div>
+        <div class="field">
+          <label class="label" for="t4-password">Пароль</label>
+          <input class="input" id="t4-password" type="password" placeholder="Пароль">
+        </div>
+        <button class="btn" id="t4-btn">Зарегистрироваться</button>
+        <div class="result" id="t4-result"></div>
+      </div>
+    </section>
+
+    <section class="task" id="task-5">
+      <div class="task__bar"><span class="task__num">Задача 5</span><h2>Категория цены товара</h2></div>
+      <div class="task__body">
+        <div class="field">
+          <label class="label" for="t5-price">Цена, ₽</label>
+          <input class="input" id="t5-price" type="number" placeholder="Введите цену">
+        </div>
+        <button class="btn" id="t5-btn">Проверить</button>
+        <div class="result" id="t5-result"></div>
+      </div>
+    </section>
+
+    <section class="task" id="task-6">
+      <div class="task__bar"><span class="task__num">Задача 6</span><h2>Переключатель состояния</h2></div>
+      <div class="task__body">
+        <div class="box" id="t6-box">Выключено</div>
+        <button class="btn" id="t6-btn">Переключить</button>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

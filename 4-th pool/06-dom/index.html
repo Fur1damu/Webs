@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Блок 6. DOM</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="page-header">
+    <a class="back-link" href="../../index.html" target="_top">← Все работы</a>
+    <h1>Блок 6. DOM</h1>
+    <p>Поиск, создание и удаление элементов — 7 задач на одной странице.</p>
+  </header>
+
+  <main class="tasks">
+
+    <section class="task" id="task-1">
+      <div class="task__bar"><span class="task__num">Задача 1</span><h2>Изменение текста</h2></div>
+      <div class="task__body">
+        <h3 class="head" id="t1-title">Исходный заголовок</h3>
+        <button class="btn" id="t1-btn">Поменять текст</button>
+      </div>
+    </section>
+
+    <section class="task" id="task-2">
+      <div class="task__bar"><span class="task__num">Задача 2</span><h2>Изменение стилей через класс</h2></div>
+      <div class="task__body">
+        <div class="cardbox" id="t2-card"><b>Карточка</b><p>Нажмите кнопку, чтобы выделить.</p></div>
+        <button class="btn" id="t2-btn">Выделить</button>
+      </div>
+    </section>
+
+    <section class="task" id="task-3">
+      <div class="task__bar"><span class="task__num">Задача 3</span><h2>Создание элементов списка</h2></div>
+      <div class="task__body">
+        <div class="row-add">
+          <input class="input" id="t3-text" type="text" placeholder="Введите текст">
+          <button class="btn" id="t3-add">Добавить</button>
+        </div>
+        <ul class="ul" id="t3-list"></ul>
+      </div>
+    </section>
+
+    <section class="task" id="task-4">
+      <div class="task__bar"><span class="task__num">Задача 4</span><h2>Удаление элементов</h2></div>
+      <div class="task__body">
+        <div class="row-add">
+          <input class="input" id="t4-text" type="text" placeholder="Новая задача">
+          <button class="btn" id="t4-add">Добавить</button>
+        </div>
+        <ul class="ul" id="t4-list"></ul>
+      </div>
+    </section>
+
+    <section class="task" id="task-5">
+      <div class="task__bar"><span class="task__num">Задача 5</span><h2>Генерация каталога</h2></div>
+      <div class="task__body">
+        <div class="bar"><button class="btn" id="t5-render">Отрисовать заново</button></div>
+        <div class="catalog" id="t5-catalog"></div>
+      </div>
+    </section>
+
+    <section class="task" id="task-6">
+      <div class="task__bar"><span class="task__num">Задача 6</span><h2>Модальное окно</h2></div>
+      <div class="task__body">
+        <button class="btn" id="t6-open">Открыть окно</button>
+        <div class="overlay" id="t6-overlay">
+          <div class="modal">
+            <button class="modal__close" id="t6-close">×</button>
+            <h3 class="modal__title">Модальное окно</h3>
+            <p class="modal__text">Закрыть можно крестиком, кликом по фону или клавишей Esc.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="task" id="task-7">
+      <div class="task__bar"><span class="task__num">Задача 7</span><h2>Таблица через DOM</h2></div>
+      <div class="task__body">
+        <table class="table">
+          <thead><tr><th>Имя</th><th>Email</th><th>Роль</th></tr></thead>
+          <tbody id="t7-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

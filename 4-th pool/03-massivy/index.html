@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Блок 3. Массивы</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="page-header">
+    <a class="back-link" href="../../index.html" target="_top">← Все работы</a>
+    <h1>Блок 3. Массивы</h1>
+    <p>filter, map, find, sort — 7 задач на одной странице.</p>
+  </header>
+
+  <main class="tasks">
+
+    <section class="task" id="task-1">
+      <div class="task__bar"><span class="task__num">Задача 1</span><h2>Каталог товаров из массива</h2></div>
+      <div class="task__body">
+        <div class="bar"><button class="btn" id="t1-render">Перерисовать</button></div>
+        <div class="catalog" id="t1-catalog"></div>
+      </div>
+    </section>
+
+    <section class="task" id="task-2">
+      <div class="task__bar"><span class="task__num">Задача 2</span><h2>Фильтрация по названию</h2></div>
+      <div class="task__body">
+        <div class="search">
+          <input class="input" id="t2-query" type="text" placeholder="Введите название">
+          <button class="btn" id="t2-btn">Найти</button>
+        </div>
+        <div class="catalog" id="t2-catalog"></div>
+      </div>
+    </section>
+
+    <section class="task" id="task-3">
+      <div class="task__bar"><span class="task__num">Задача 3</span><h2>Поиск пользователя по id</h2></div>
+      <div class="task__body">
+        <div class="search">
+          <input class="input" id="t3-id" type="number" placeholder="id: 1, 2 или 3">
+          <button class="btn" id="t3-btn">Найти</button>
+        </div>
+        <div class="result" id="t3-result"></div>
+      </div>
+    </section>
+
+    <section class="task" id="task-4">
+      <div class="task__bar"><span class="task__num">Задача 4</span><h2>Преобразование цен</h2></div>
+      <div class="task__body">
+        <p class="muted">Скидка 10% и подписи через map (исходный массив не меняется).</p>
+        <div class="two">
+          <ul class="plain-list" id="t4-discounted"></ul>
+          <ul class="plain-list" id="t4-labels"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="task" id="task-5">
+      <div class="task__bar"><span class="task__num">Задача 5</span><h2>Список задач</h2></div>
+      <div class="task__body">
+        <div class="tabs">
+          <button class="tab tab--active" data-filter="all">Все</button>
+          <button class="tab" data-filter="done">Выполненные</button>
+          <button class="tab" data-filter="active">Невыполненные</button>
+        </div>
+        <ul class="todo" id="t5-list"></ul>
+      </div>
+    </section>
+
+    <section class="task" id="task-6">
+      <div class="task__bar"><span class="task__num">Задача 6</span><h2>Корзина</h2></div>
+      <div class="task__body">
+        <ul class="cart" id="t6-cart"></ul>
+        <div class="totals" id="t6-totals"></div>
+      </div>
+    </section>
+
+    <section class="task" id="task-7">
+      <div class="task__bar"><span class="task__num">Задача 7</span><h2>Простая сортировка</h2></div>
+      <div class="task__body">
+        <div class="controls">
+          <button class="btn ghost" data-sort="default">Исходный</button>
+          <button class="btn ghost" data-sort="asc">По возрастанию</button>
+          <button class="btn ghost" data-sort="desc">По убыванию</button>
+        </div>
+        <ul class="sort-list" id="t7-list"></ul>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

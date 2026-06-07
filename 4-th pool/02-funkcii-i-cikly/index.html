@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Блок 2. Функции и циклы</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="page-header">
+    <a class="back-link" href="../../index.html" target="_top">← Все работы</a>
+    <h1>Блок 2. Функции и циклы</h1>
+    <p>Функции, return и циклы — 7 задач на одной странице.</p>
+  </header>
+
+  <main class="tasks">
+
+    <section class="task" id="task-1">
+      <div class="task__bar"><span class="task__num">Задача 1</span><h2>Калькулятор</h2></div>
+      <div class="task__body">
+        <div class="calc">
+          <input class="input" id="t1-a" type="number" placeholder="Число 1">
+          <select class="input" id="t1-op">
+            <option value="+">+</option>
+            <option value="-">−</option>
+            <option value="*">×</option>
+            <option value="/">÷</option>
+          </select>
+          <input class="input" id="t1-b" type="number" placeholder="Число 2">
+        </div>
+        <button class="btn" id="t1-btn">Посчитать</button>
+        <div class="result" id="t1-result"></div>
+      </div>
+    </section>
+
+    <section class="task" id="task-2">
+      <div class="task__bar"><span class="task__num">Задача 2</span><h2>Таблица умножения</h2></div>
+      <div class="task__body">
+        <div class="field">
+          <label class="label" for="t2-num">Число</label>
+          <input class="input" id="t2-num" type="number" placeholder="Например, 5">
+        </div>
+        <button class="btn" id="t2-btn">Показать таблицу</button>
+        <div class="rows" id="t2-rows"></div>
+      </div>
+    </section>
+
+    <section class="task" id="task-3">
+      <div class="task__bar"><span class="task__num">Задача 3</span><h2>Генератор карточек товаров</h2></div>
+      <div class="task__body">
+        <div class="catalog" id="t3-catalog"></div>
+      </div>
+    </section>
+
+    <section class="task" id="task-4">
+      <div class="task__bar"><span class="task__num">Задача 4</span><h2>Список чисел</h2></div>
+      <div class="task__body">
+        <div class="row-add">
+          <input class="input" id="t4-num" type="number" placeholder="Введите число">
+          <button class="btn" id="t4-add">Добавить</button>
+        </div>
+        <ul class="num-list" id="t4-list"></ul>
+        <div class="stats">
+          <div class="stat">Сумма: <b id="t4-sum">0</b></div>
+          <div class="stat">Среднее: <b id="t4-avg">0</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="task" id="task-5">
+      <div class="task__bar"><span class="task__num">Задача 5</span><h2>Проверка пароля</h2></div>
+      <div class="task__body">
+        <div class="field">
+          <label class="label" for="t5-pass">Пароль</label>
+          <input class="input" id="t5-pass" type="text" placeholder="Введите пароль">
+        </div>
+        <button class="btn" id="t5-btn">Проверить</button>
+        <div class="result" id="t5-result"></div>
+      </div>
+    </section>
+
+    <section class="task" id="task-6">
+      <div class="task__bar"><span class="task__num">Задача 6</span><h2>Генератор пунктов меню</h2></div>
+      <div class="task__body">
+        <nav class="nav" id="t6-nav"></nav>
+      </div>
+    </section>
+
+    <section class="task" id="task-7">
+      <div class="task__bar"><span class="task__num">Задача 7</span><h2>Область видимости</h2></div>
+      <div class="task__body">
+        <p class="muted">Результаты дублируются в консоль браузера (F12).</p>
+        <div class="log" id="t7-log"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

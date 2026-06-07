@@ -1,0 +1,71 @@
+/* ===== База ===== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: #eef2f7;
+  color: #0f172a;
+  line-height: 1.5;
+  padding: 32px 16px 64px;
+}
+
+.page-header { max-width: 760px; margin: 0 auto 26px; }
+.page-header h1 { font-size: 30px; }
+.page-header p { color: #64748b; margin-top: 6px; }
+.back-link { display: inline-block; margin-bottom: 14px; color: #2563eb; text-decoration: none; font-size: 14px; }
+.back-link:hover { text-decoration: underline; }
+
+.tasks { max-width: 760px; margin: 0 auto; display: grid; gap: 20px; }
+
+.task { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; box-shadow: 0 6px 20px rgba(2, 6, 23, .06); overflow: hidden; }
+.task__bar { display: flex; align-items: center; gap: 10px; padding: 13px 20px; background: #f8fafc; border-bottom: 1px solid #eef2f7; }
+.task__num { font-size: 12px; font-weight: 700; color: #fff; background: #2563eb; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+.task__bar h2 { font-size: 16px; font-weight: 600; }
+.task__body { padding: 20px; }
+
+.field { margin-bottom: 14px; }
+.label { display: block; font-size: 14px; color: #475569; margin-bottom: 6px; }
+.input { width: 100%; padding: 11px 14px; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 15px; outline: none; transition: border-color .15s, box-shadow .15s; }
+.input:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, .15); }
+.btn { padding: 11px 18px; border: none; border-radius: 10px; background: #2563eb; color: #fff; font-size: 15px; font-weight: 600; cursor: pointer; transition: background .15s; }
+.btn:hover { background: #1d4ed8; }
+.btn:active { transform: translateY(1px); }
+.result { margin-top: 14px; padding: 12px 16px; border-radius: 10px; background: #f8fafc; border: 1px solid #e2e8f0; font-size: 15px; font-weight: 600; min-height: 18px; }
+.result--error { background: #fef2f2; border-color: #fecaca; color: #b91c1c; }
+.result--success { background: #f0fdf4; border-color: #bbf7d0; color: #15803d; }
+.muted { color: #64748b; font-size: 13px; margin-bottom: 10px; }
+
+/* ===== Задача 1: калькулятор ===== */
+#task-1 .calc { display: grid; grid-template-columns: 1fr 64px 1fr; gap: 10px; margin-bottom: 14px; }
+#task-1 select.input { text-align: center; font-weight: 700; background: #fff; }
+
+/* ===== Задача 2: таблица умножения ===== */
+#task-2 .rows { display: grid; gap: 6px; }
+#task-2 .row { padding: 9px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; font-size: 15px; }
+#task-2 .row--error { background: #fef2f2; border-color: #fecaca; color: #b91c1c; }
+
+/* ===== Задача 3: карточки ===== */
+#task-3 .catalog { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; }
+#task-3 .product-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; text-align: center; }
+#task-3 .product-card__icon { font-size: 32px; margin-bottom: 6px; }
+#task-3 .product-card__name { font-weight: 600; }
+
+/* ===== Задача 4: список чисел ===== */
+#task-4 .row-add { display: flex; gap: 10px; margin-bottom: 14px; }
+#task-4 .num-list { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+#task-4 .num-list li { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; border-radius: 8px; padding: 6px 12px; font-weight: 600; }
+#task-4 .stats { display: flex; gap: 12px; }
+#task-4 .stat { flex: 1; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px; text-align: center; font-size: 14px; color: #475569; }
+#task-4 .stat b { display: block; font-size: 20px; color: #0f172a; margin-top: 4px; }
+
+/* ===== Задача 6: меню ===== */
+#task-6 .nav { background: #0f172a; border-radius: 10px; padding: 8px; }
+#task-6 .menu { list-style: none; display: flex; gap: 6px; flex-wrap: wrap; }
+#task-6 .menu__link { display: block; padding: 8px 14px; border-radius: 8px; color: #cbd5e1; text-decoration: none; font-size: 15px; }
+#task-6 .menu__link:hover { background: #1e293b; color: #fff; }
+
+/* ===== Задача 7: область видимости ===== */
+#task-7 .log { background: #0f172a; color: #e2e8f0; border-radius: 10px; padding: 14px; font-family: "Consolas", monospace; font-size: 13px; line-height: 1.7; }
+#task-7 .log__line { white-space: pre-wrap; }
+#task-7 .log__line--ok { color: #86efac; }
+#task-7 .log__line--error { color: #fca5a5; }

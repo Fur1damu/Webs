@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Блок 5. Работа с данными</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="page-header">
+    <a class="back-link" href="../../index.html" target="_top">← Все работы</a>
+    <h1>Блок 5. Работа с данными</h1>
+    <p>map, filter, reduce, чистые функции — 7 задач на одной странице.</p>
+  </header>
+
+  <main class="tasks">
+
+    <section class="task" id="task-1">
+      <div class="task__bar"><span class="task__num">Задача 1</span><h2>Подготовка товаров для UI</h2></div>
+      <div class="task__body"><div class="catalog" id="t1-catalog"></div></div>
+    </section>
+
+    <section class="task" id="task-2">
+      <div class="task__bar"><span class="task__num">Задача 2</span><h2>Каталог по категориям</h2></div>
+      <div class="task__body"><div id="t2-catalog"></div></div>
+    </section>
+
+    <section class="task" id="task-3">
+      <div class="task__bar"><span class="task__num">Задача 3</span><h2>Списки пользователей</h2></div>
+      <div class="task__body">
+        <div class="grid4">
+          <div class="mini"><h3>Активные</h3><ul id="t3-active"></ul></div>
+          <div class="mini"><h3>Администраторы</h3><ul id="t3-admins"></ul></div>
+          <div class="mini"><h3>Email-адреса</h3><ul id="t3-emails"></ul></div>
+          <div class="mini"><h3>Неактивных</h3><div class="big" id="t3-inactive">0</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="task" id="task-4">
+      <div class="task__bar"><span class="task__num">Задача 4</span><h2>Таблица заказов</h2></div>
+      <div class="task__body">
+        <table class="table">
+          <thead><tr><th>Номер</th><th>Клиент</th><th>Товаров</th><th>Сумма</th><th>Статус</th></tr></thead>
+          <tbody id="t4-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="task" id="task-5">
+      <div class="task__bar"><span class="task__num">Задача 5</span><h2>Фильтрация и сортировка каталога</h2></div>
+      <div class="task__body">
+        <div class="filters">
+          <input class="input" id="t5-search" type="text" placeholder="Поиск">
+          <select class="input" id="t5-category"><option value="all">Все категории</option></select>
+          <select class="input" id="t5-sort">
+            <option value="default">Без сортировки</option>
+            <option value="asc">Цена ↑</option>
+            <option value="desc">Цена ↓</option>
+          </select>
+        </div>
+        <div class="catalog" id="t5-catalog"></div>
+      </div>
+    </section>
+
+    <section class="task" id="task-6">
+      <div class="task__bar"><span class="task__num">Задача 6</span><h2>Чистые функции</h2></div>
+      <div class="task__body">
+        <div class="demo"><div class="demo__label">filterByCategory(products, 'Периферия')</div><div class="chips" id="t6-demo1"></div></div>
+        <div class="demo"><div class="demo__label">searchProducts(products, 'мон')</div><div class="chips" id="t6-demo2"></div></div>
+        <div class="demo"><div class="demo__label">sortByPrice(products, 'asc')</div><div class="chips" id="t6-demo3"></div></div>
+        <div class="demo"><div class="demo__label">formatProducts(products)</div><div class="chips" id="t6-demo4"></div></div>
+      </div>
+    </section>
+
+    <section class="task" id="task-7">
+      <div class="task__bar"><span class="task__num">Задача 7</span><h2>Подготовка сырых данных</h2></div>
+      <div class="task__body"><div class="catalog" id="t7-catalog"></div></div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

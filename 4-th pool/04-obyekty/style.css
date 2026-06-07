@@ -1,0 +1,84 @@
+/* ===== База ===== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: #eef2f7;
+  color: #0f172a;
+  line-height: 1.5;
+  padding: 32px 16px 64px;
+}
+
+.page-header { max-width: 760px; margin: 0 auto 26px; }
+.page-header h1 { font-size: 30px; }
+.page-header p { color: #64748b; margin-top: 6px; }
+.back-link { display: inline-block; margin-bottom: 14px; color: #2563eb; text-decoration: none; font-size: 14px; }
+.back-link:hover { text-decoration: underline; }
+
+.tasks { max-width: 760px; margin: 0 auto; display: grid; gap: 20px; }
+
+.task { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; box-shadow: 0 6px 20px rgba(2, 6, 23, .06); overflow: hidden; }
+.task__bar { display: flex; align-items: center; gap: 10px; padding: 13px 20px; background: #f8fafc; border-bottom: 1px solid #eef2f7; }
+.task__num { font-size: 12px; font-weight: 700; color: #fff; background: #2563eb; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+.task__bar h2 { font-size: 16px; font-weight: 600; }
+.task__body { padding: 20px; }
+
+.btn { padding: 11px 18px; border: none; border-radius: 10px; background: #2563eb; color: #fff; font-size: 15px; font-weight: 600; cursor: pointer; transition: background .15s; }
+.btn:hover { background: #1d4ed8; }
+
+/* ===== Задача 1: профиль ===== */
+#task-1 .profile { max-width: 320px; margin: 0 auto; text-align: center; }
+#task-1 .profile__avatar { width: 76px; height: 76px; margin: 0 auto 12px; border-radius: 50%; background: linear-gradient(135deg, #2563eb, #7c3aed); color: #fff; font-size: 30px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+#task-1 .profile__name { font-size: 22px; font-weight: 700; }
+#task-1 .profile__role { display: inline-block; margin-top: 6px; padding: 3px 12px; background: #eff6ff; color: #2563eb; border-radius: 999px; font-size: 13px; font-weight: 600; }
+#task-1 .profile__list { list-style: none; margin-top: 16px; text-align: left; }
+#task-1 .profile__list li { display: flex; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid #f1f5f9; font-size: 14px; }
+#task-1 .profile__list li span:first-child { color: #64748b; }
+#task-1 .profile__list li span:last-child { font-weight: 600; }
+
+/* ===== Задача 2: товар со спецификацией ===== */
+#task-2 .product { max-width: 360px; }
+#task-2 .product__icon { font-size: 48px; }
+#task-2 .product__title { font-size: 20px; font-weight: 700; margin-top: 6px; }
+#task-2 .product__price { font-size: 22px; color: #2563eb; font-weight: 800; margin: 4px 0 14px; }
+#task-2 .product__specs-title { font-size: 13px; color: #64748b; margin-bottom: 6px; }
+#task-2 .product__specs { list-style: none; }
+#task-2 .product__specs li { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f1f5f9; font-size: 14px; }
+#task-2 .product__specs li span:first-child { color: #64748b; }
+#task-2 .product__specs li span:last-child { font-weight: 600; }
+
+/* ===== Задача 3: карточки пользователей ===== */
+#task-3 .users { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+#task-3 .user-card { border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; background: #f8fafc; }
+#task-3 .user-card__name { font-size: 17px; font-weight: 700; }
+#task-3 .user-card__email { color: #64748b; font-size: 13px; margin: 4px 0 10px; }
+#task-3 .user-card__role { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; background: #eff6ff; color: #2563eb; }
+#task-3 .badge { display: inline-block; margin-left: 6px; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+#task-3 .badge--active { background: #dcfce7; color: #15803d; }
+#task-3 .badge--inactive { background: #fee2e2; color: #b91c1c; }
+
+/* ===== Задача 4: деструктуризация ===== */
+#task-4 .info { list-style: none; }
+#task-4 .info li { display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid #f1f5f9; font-size: 15px; }
+#task-4 .info li span:first-child { color: #64748b; }
+#task-4 .info li span:last-child { font-weight: 600; }
+
+/* ===== Задача 5: карточка через шаблон ===== */
+#task-5 .promo { max-width: 320px; border: 1px solid #e2e8f0; border-radius: 14px; padding: 20px; }
+#task-5 .promo__cat { display: inline-block; padding: 3px 10px; background: #eff6ff; color: #2563eb; border-radius: 999px; font-size: 12px; font-weight: 600; margin-bottom: 10px; }
+#task-5 .promo__title { font-size: 19px; font-weight: 700; }
+#task-5 .promo__price { font-size: 22px; color: #2563eb; font-weight: 800; margin: 4px 0; }
+#task-5 .promo__desc { color: #64748b; font-size: 14px; margin-bottom: 14px; }
+#task-5 .promo .btn { width: 100%; }
+
+/* ===== Задача 6: заказ ===== */
+#task-6 .order__head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+#task-6 .order__number { font-size: 20px; font-weight: 800; }
+#task-6 .order__date { color: #64748b; font-size: 14px; }
+#task-6 .order__client { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px; margin-bottom: 14px; font-size: 14px; }
+#task-6 .order__client b { display: block; font-size: 15px; }
+#task-6 table { width: 100%; border-collapse: collapse; }
+#task-6 th, #task-6 td { padding: 9px 8px; text-align: left; font-size: 14px; border-bottom: 1px solid #f1f5f9; }
+#task-6 th { color: #64748b; font-weight: 600; }
+#task-6 td:last-child, #task-6 th:last-child { text-align: right; }
+#task-6 .order__total { margin-top: 14px; text-align: right; font-size: 18px; font-weight: 800; color: #2563eb; }
