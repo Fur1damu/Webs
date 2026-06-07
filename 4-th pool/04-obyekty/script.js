@@ -2,15 +2,22 @@
 
 // Задача 1. Объект пользователя
 (function () {
-  const user = { id: 1, name: 'Алексей', age: 25, email: 'alex@example.com', role: 'student' };
+  const user = {
+    name: 'Уколов Яромир',
+    role: 'Начинающий фронтенд-разработчик',
+    age: 19,
+    city: 'Южно-Сахалинск',
+    email: 'ukolovyaromir@gmail.com',
+    photo: 'photo.jpg',
+  };
   document.querySelector('#t1-profile').innerHTML = `
     <div class="profile">
-      <div class="profile__avatar">${user.name[0]}</div>
+      <div class="profile__avatar"><img src="${user.photo}" alt="${user.name}"></div>
       <div class="profile__name">${user.name}</div>
       <div class="profile__role">${user.role}</div>
       <ul class="profile__list">
-        <li><span>ID</span><span>${user.id}</span></li>
         <li><span>Возраст</span><span>${user.age}</span></li>
+        <li><span>Город</span><span>${user.city}</span></li>
         <li><span>Email</span><span>${user.email}</span></li>
       </ul>
     </div>`;

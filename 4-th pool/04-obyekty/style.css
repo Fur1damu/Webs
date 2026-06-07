@@ -28,7 +28,8 @@ body {
 
 /* ===== Задача 1: профиль ===== */
 #task-1 .profile { max-width: 320px; margin: 0 auto; text-align: center; }
-#task-1 .profile__avatar { width: 76px; height: 76px; margin: 0 auto 12px; border-radius: 50%; background: linear-gradient(135deg, #2563eb, #7c3aed); color: #fff; font-size: 30px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+#task-1 .profile__avatar { width: 92px; height: 92px; margin: 0 auto 12px; border-radius: 50%; overflow: hidden; background: linear-gradient(135deg, #2563eb, #7c3aed); display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 18px rgba(37, 99, 235, .25); }
+#task-1 .profile__avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
 #task-1 .profile__name { font-size: 22px; font-weight: 700; }
 #task-1 .profile__role { display: inline-block; margin-top: 6px; padding: 3px 12px; background: #eff6ff; color: #2563eb; border-radius: 999px; font-size: 13px; font-weight: 600; }
 #task-1 .profile__list { list-style: none; margin-top: 16px; text-align: left; }
