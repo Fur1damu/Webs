@@ -1,311 +1,1491 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Web Programming — задания</title>
-  <style>
-    :root {
-      --bg: #f6f8fb;
-      --card: #ffffff;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --border: #dbe3ee;
-      --accent: #2563eb;
-      --accent-hover: #1d4ed8;
-      --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Windows 12 — Работы</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    user-select: none;
+  }
 
-    * {
-      box-sizing: border-box;
-    }
+  body {
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+  }
 
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
-    }
+  /* ===== LOCK SCREEN ===== */
+  .lock-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.5s, transform 0.5s;
+  }
 
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 32px 16px 48px;
-    }
+  .lock-screen.hidden {
+    opacity: 0;
+    transform: translateY(-100%);
+    pointer-events: none;
+  }
 
-    .hero {
-      background: linear-gradient(135deg, #ffffff, #eef4ff);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 28px;
-      box-shadow: var(--shadow);
-      margin-bottom: 24px;
-    }
+  .lock-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 30%, #0f3460 60%, #533483 100%);
+    z-index: 0;
+  }
 
-    .hero h1 {
-      margin: 0 0 10px;
-      font-size: 32px;
-    }
+  .lock-bg::before {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(83, 52, 131, 0.4), transparent);
+    top: -100px;
+    right: -100px;
+  }
 
-    .hero p {
-      margin: 0;
-      color: var(--muted);
-      max-width: 800px;
-    }
+  .lock-bg::after {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(15, 52, 96, 0.5), transparent);
+    bottom: -100px;
+    left: -100px;
+  }
 
-    .note {
-      margin-top: 16px;
-      padding: 14px 16px;
-      background: #fff7ed;
-      border: 1px solid #fed7aa;
-      border-radius: 12px;
-      color: #9a3412;
-    }
+  .lock-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: white;
+  }
 
-    .grid {
-      display: grid;
-      gap: 16px;
-    }
+  .lock-time {
+    font-size: 80px;
+    font-weight: 200;
+    letter-spacing: -2px;
+    margin-bottom: 4px;
+  }
 
-    details {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
+  .lock-date {
+    font-size: 18px;
+    font-weight: 300;
+    opacity: 0.8;
+    margin-bottom: 60px;
+  }
 
-    summary {
-      cursor: pointer;
-      padding: 18px 20px;
-      font-size: 18px;
-      font-weight: 700;
-      list-style: none;
-      outline: none;
-      user-select: none;
-      background: #f8fbff;
-      border-bottom: 1px solid var(--border);
-    }
+  .lock-hint {
+    font-size: 14px;
+    opacity: 0.5;
+    animation: pulse 2s ease-in-out infinite;
+  }
 
-    summary::-webkit-details-marker {
-      display: none;
-    }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+  }
 
-    .content {
-      padding: 18px 20px 20px;
-    }
+  /* ===== DESKTOP ===== */
+  .desktop {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+  }
 
-    .section-title {
-      margin: 0 0 10px;
-      font-size: 16px;
-      color: var(--muted);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
+  .desktop-wallpaper {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 40%, #4a00e0 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 60%, #8e2de2 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 30%, #00d2ff 0%, transparent 40%),
+      linear-gradient(180deg, #0f0c29, #302b63, #24243e);
+  }
 
-    ul {
-      margin: 0;
-      padding-left: 20px;
-    }
+  .desktop-icons {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 80px);
+    gap: 6px;
+    z-index: 2;
+  }
 
-    li {
-      margin: 8px 0;
-    }
+  .desktop-icon {
+    width: 80px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
 
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
+  .desktop-icon:hover { background: rgba(255, 255, 255, 0.1); }
+  .desktop-icon:active { background: rgba(255, 255, 255, 0.15); }
 
-    a:hover {
-      color: var(--accent-hover);
-      text-decoration: underline;
-    }
+  .desktop-icon .di-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+  }
 
-    .two-columns {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 12px 24px;
-    }
+  .desktop-icon .di-name {
+    font-size: 11px;
+    color: white;
+    text-align: center;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.9), 0 0 8px rgba(0,0,0,0.7);
+    line-height: 1.2;
+  }
 
-    .footer {
-      margin-top: 24px;
-      color: var(--muted);
-      font-size: 14px;
-    }
+  /* ===== FLOATING TASKBAR ===== */
+  .taskbar {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 10px;
+    background: rgba(30, 30, 30, 0.75);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.4),
+      0 2px 8px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    z-index: 100;
+    transition: background 0.3s;
+  }
 
-    code {
-      background: #eef2ff;
-      padding: 2px 6px;
-      border-radius: 6px;
-    }
-  </style>
+  .taskbar:hover { background: rgba(35, 35, 35, 0.85); }
+
+  .taskbar-center { display: flex; align-items: center; gap: 4px; }
+
+  .taskbar-btn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    font-size: 20px;
+    color: white;
+  }
+
+  .taskbar-btn:hover { background: rgba(255, 255, 255, 0.1); }
+  .taskbar-btn:active { background: rgba(255, 255, 255, 0.15); transform: scale(0.95); }
+
+  .taskbar-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    width: 16px;
+    height: 3px;
+    background: #60cdff;
+    border-radius: 2px;
+  }
+
+  .taskbar-btn.start-btn { font-size: 22px; }
+
+  .taskbar-divider {
+    width: 1px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0 4px;
+  }
+
+  .taskbar-tray {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .taskbar-tray:hover { background: rgba(255, 255, 255, 0.1); }
+  .taskbar-tray .tray-icon { font-size: 14px; color: white; }
+
+  .taskbar-time { color: white; font-size: 12px; line-height: 1.2; text-align: right; }
+  .tray-date { opacity: 0.8; font-size: 11px; }
+
+  /* ===== START MENU ===== */
+  .start-menu {
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 560px;
+    background: rgba(32, 32, 32, 0.85);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.5);
+    z-index: 200;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .start-menu.visible { display: flex; }
+
+  .start-top { padding: 20px 24px 16px; }
+
+  .start-search { position: relative; width: 100%; }
+
+  .start-search input {
+    width: 100%;
+    padding: 10px 16px 10px 40px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: white;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s;
+  }
+
+  .start-search input::placeholder { color: rgba(255, 255, 255, 0.4); }
+  .start-search input:focus { background: rgba(255, 255, 255, 0.12); border-color: rgba(96, 205, 255, 0.4); }
+
+  .start-search .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .start-apps {
+    flex: 1;
+    padding: 8px 24px 24px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 4px;
+    overflow-y: auto;
+    align-content: flex-start;
+  }
+
+  .start-app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 4px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .start-app:hover { background: rgba(255, 255, 255, 0.1); }
+  .start-app .app-icon { font-size: 28px; }
+  .start-app .app-name { font-size: 11px; color: rgba(255, 255, 255, 0.8); text-align: center; }
+
+  .start-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .start-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .start-user:hover { background: rgba(255, 255, 255, 0.1); }
+
+  .user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: white;
+  }
+
+  .user-name { font-size: 13px; color: white; }
+
+  .start-power {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    transition: background 0.2s;
+  }
+
+  .start-power:hover { background: rgba(255, 255, 255, 0.1); }
+
+  /* ===== WINDOWS ===== */
+  .window {
+    position: absolute;
+    background: rgba(32, 32, 32, 0.9);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.45);
+    z-index: 50;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-width: 340px;
+    min-height: 220px;
+    max-width: calc(100vw - 24px);
+    max-height: calc(100vh - 90px);
+  }
+
+  .window.focused {
+    border-color: rgba(96, 205, 255, 0.3);
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(96, 205, 255, 0.15);
+  }
+
+  .window.maximized { border-radius: 0; }
+
+  .window-header {
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0 0 10px;
+    background: rgba(0, 0, 0, 0.15);
+    cursor: move;
+    flex-shrink: 0;
+  }
+
+  .window-title {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .window-title-icon { font-size: 14px; }
+
+  .window-controls { display: flex; gap: 0; }
+
+  .window-ctrl-btn {
+    width: 46px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.15s;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .window-ctrl-btn:hover { background: rgba(255, 255, 255, 0.1); }
+  .window-ctrl-btn.close:hover { background: #c42b1c; color: white; }
+
+  .window-body { flex: 1; padding: 0; overflow: auto; min-height: 0; }
+
+  /* File Explorer Content */
+  .file-explorer { display: flex; height: 100%; }
+
+  .fe-sidebar {
+    width: 190px;
+    flex-shrink: 0;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 10px 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    overflow-y: auto;
+  }
+
+  .fe-sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    transition: background 0.15s;
+  }
+
+  .fe-sidebar-item:hover { background: rgba(255, 255, 255, 0.08); }
+  .fe-sidebar-item.active { background: rgba(255, 255, 255, 0.1); color: white; }
+  .fe-sidebar-item .fe-icon { font-size: 16px; flex-shrink: 0; }
+  .fe-sidebar-item .fe-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .fe-pane { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+
+  .fe-topbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    flex-shrink: 0;
+  }
+
+  .fe-nav { display: flex; gap: 4px; }
+
+  .fe-navbtn {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .fe-navbtn:hover:not(:disabled) { background: rgba(255, 255, 255, 0.12); }
+  .fe-navbtn:disabled { opacity: 0.3; cursor: default; }
+
+  .fe-breadcrumb {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.65);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .fe-crumb { cursor: pointer; padding: 2px 6px; border-radius: 5px; }
+  .fe-crumb:hover { background: rgba(255, 255, 255, 0.1); color: white; }
+
+  .fe-hint { font-size: 11px; color: rgba(255, 255, 255, 0.4); padding: 8px 12px 0; }
+
+  .fe-main {
+    flex: 1;
+    padding: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-content: flex-start;
+    overflow-y: auto;
+  }
+
+  .fe-item {
+    width: 96px;
+    padding: 10px 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .fe-item:hover { background: rgba(255, 255, 255, 0.08); }
+  .fe-item .fe-item-icon { font-size: 34px; }
+
+  .fe-item .fe-item-name {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    line-height: 1.3;
+    word-break: break-word;
+  }
+
+  .fe-empty { color: rgba(255, 255, 255, 0.4); font-size: 13px; padding: 20px; }
+
+  /* Work viewer (iframe) */
+  .work-view { display: flex; flex-direction: column; height: 100%; background: #fff; }
+
+  .work-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 6px 10px;
+    background: rgba(20, 20, 20, 0.92);
+    flex-shrink: 0;
+  }
+
+  .work-path {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: Consolas, monospace;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .work-open { font-size: 11px; color: #60cdff; text-decoration: none; white-space: nowrap; }
+  .work-open:hover { text-decoration: underline; }
+  .work-frame { flex: 1; width: 100%; border: none; background: #fff; }
+
+  body.dragging iframe { pointer-events: none; }
+  body.dragging { cursor: move; }
+
+  /* Browser Content */
+  .browser { display: flex; flex-direction: column; height: 100%; }
+
+  .browser-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .browser-nav-btn {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    transition: background 0.15s;
+  }
+
+  .browser-nav-btn:hover { background: rgba(255, 255, 255, 0.1); }
+
+  .browser-url {
+    flex: 1;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 13px;
+    outline: none;
+  }
+
+  .browser-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.15);
+  }
+
+  .browser-home { text-align: center; color: rgba(255, 255, 255, 0.5); }
+  .browser-home .browser-logo { font-size: 48px; margin-bottom: 16px; }
+
+  /* Settings Content */
+  .settings { display: flex; height: 100%; }
+
+  .settings-nav {
+    width: 200px;
+    flex-shrink: 0;
+    padding: 12px 8px;
+    background: rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+  }
+
+  .settings-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    transition: background 0.15s;
+  }
+
+  .settings-nav-item:hover { background: rgba(255, 255, 255, 0.08); }
+  .settings-nav-item.active { background: rgba(255, 255, 255, 0.1); color: white; }
+  .settings-nav-item .sni-icon { font-size: 18px; }
+
+  .settings-content { flex: 1; padding: 24px; overflow-y: auto; }
+  .settings-title { font-size: 28px; font-weight: 600; color: white; margin-bottom: 24px; }
+
+  .settings-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .settings-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; }
+  .settings-row + .settings-row { border-top: 1px solid rgba(255, 255, 255, 0.05); }
+  .settings-label { font-size: 13px; color: rgba(255, 255, 255, 0.8); }
+  .settings-sublabel { font-size: 11px; color: rgba(255, 255, 255, 0.4); margin-top: 2px; }
+
+  .toggle {
+    width: 44px;
+    height: 22px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 11px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+
+  .toggle.on { background: #60cdff; }
+
+  .toggle::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    top: 3px;
+    left: 3px;
+    transition: transform 0.2s;
+  }
+
+  .toggle.on::after { transform: translateX(22px); }
+
+  /* Generic placeholder content */
+  .app-placeholder {
+    padding: 40px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .app-placeholder .ph-icon { font-size: 56px; }
+
+  /* ===== CONTEXT MENU ===== */
+  .context-menu {
+    position: fixed;
+    background: rgba(44, 44, 44, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    padding: 6px;
+    z-index: 1000;
+    display: none;
+    min-width: 210px;
+    animation: ctxIn 0.1s ease-out;
+  }
+
+  .context-menu.visible { display: block; }
+
+  @keyframes ctxIn {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .ctx-item {
+    padding: 8px 14px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.85);
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.1s;
+  }
+
+  .ctx-item:hover { background: rgba(255, 255, 255, 0.1); }
+  .ctx-sep { height: 1px; background: rgba(255, 255, 255, 0.08); margin: 4px 8px; }
+
+  /* ===== WIDGET PANEL ===== */
+  .widget-panel {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 320px;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 80;
+    animation: widgetIn 0.2s ease-out;
+  }
+
+  .widget-panel.visible { display: flex; }
+
+  @keyframes widgetIn {
+    from { transform: translateX(20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+
+  .widget-card {
+    background: rgba(32, 32, 32, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 16px;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .widget-card-title { font-size: 13px; color: rgba(255, 255, 255, 0.6); margin-bottom: 8px; }
+  .widget-card-value { font-size: 28px; font-weight: 600; color: white; }
+  .widget-card-sub { font-size: 12px; color: rgba(255, 255, 255, 0.4); margin-top: 4px; }
+
+  .quick-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+
+  .quick-action-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .quick-action-btn:hover { background: rgba(255, 255, 255, 0.12); }
+  .quick-action-btn .qa-icon { font-size: 20px; }
+  .quick-action-btn .qa-label { font-size: 11px; color: rgba(255, 255, 255, 0.7); }
+  .quick-action-btn.active { background: #60cdff; }
+  .quick-action-btn.active .qa-label { color: white; }
+
+  /* ===== LOADING SCREEN ===== */
+  .loading-screen {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 12000;
+    transition: opacity 0.5s ease-out;
+  }
+
+  .loading-screen.hidden { opacity: 0; pointer-events: none; }
+  .loading-logo { font-size: 48px; margin-bottom: 32px; }
+
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: #60cdff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text { margin-top: 24px; font-size: 14px; color: rgba(255, 255, 255, 0.6); }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.25); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .start-menu { width: 92%; }
+    .start-apps { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <header class="hero">
-      <h1>Web Programming</h1>
-      <p>
-        Главная страница для просмотра всех HTML-заданий через GitHub Pages.
-        Нажимай на нужный раздел и открывай файлы прямо из браузера.
-      </p>
-      <div class="note">
-        <strong>Важно:</strong> файлы <code>.doc</code> не открываются как веб-страницы в GitHub Pages.
-        Они останутся в репозитории как материалы к заданиям, а HTML-файлы будут открываться по ссылкам ниже.
-      </div>
-    </header>
-
-    <main class="grid">
-
-      <details open>
-        <summary>1–10 HTML</summary>
-        <div class="content">
-          <p class="section-title">Файлы в корне</p>
-          <div class="two-columns">
-            <ul>
-              <li><a href="1.html">1.html</a></li>
-              <li><a href="2.html">2.html</a></li>
-              <li><a href="3.html">3.html</a></li>
-              <li><a href="4.html">4.html</a></li>
-              <li><a href="5.html">5.html</a></li>
-            </ul>
-            <ul>
-              <li><a href="6.html">6.html</a></li>
-              <li><a href="7.html">7.html</a></li>
-              <li><a href="8.html">8.html</a></li>
-              <li><a href="9.html">9.html</a></li>
-              <li><a href="10.html">10.html</a></li>
-            </ul>
-          </div>
-        </div>
-      </details>
-
-      <details>
-        <summary>Карты и изображения</summary>
-        <div class="content">
-          <div class="two-columns">
-            <ul>
-              <li><a href="Карта1.htm">Карта1.htm</a></li>
-              <li><a href="Карта2.htm">Карта2.htm</a></li>
-              <li><a href="Карта3.htm">Карта3.htm</a></li>
-            </ul>
-            <ul>
-              <li><a href="Картинка1.htm">Картинка1.htm</a></li>
-              <li><a href="Картинка2.htm">Картинка2.htm</a></li>
-              <li><a href="Картинка3.htm">Картинка3.htm</a></li>
-            </ul>
-          </div>
-        </div>
-      </details>
-
-      <details>
-        <summary>3-rd pool</summary>
-        <div class="content">
-          <p class="section-title">Задание 1</p>
-          <ul>
-            <li><a href="3-rd%20pool/1/index.html">3-rd pool / 1 / index.html</a></li>
-          </ul>
-
-          <p class="section-title">Задание 2</p>
-          <ul>
-            <li><a href="3-rd%20pool/2/resume.html">3-rd pool / 2 / resume.html</a></li>
-          </ul>
-
-          <p class="section-title">Задание 3</p>
-          <ul>
-            <li><a href="3-rd%20pool/3/news.html">3-rd pool / 3 / news.html</a></li>
-            <li><a href="3-rd%20pool/3/personal-site.html">3-rd pool / 3 / personal-site.html</a></li>
-            <li><a href="3-rd%20pool/3/resume-yaromir.html">3-rd pool / 3 / resume-yaromir.html</a></li>
-          </ul>
-
-          <p class="section-title">Задание 4</p>
-          <ul>
-            <li><a href="3-rd%20pool/4/feedback.html">3-rd pool / 4 / feedback.html</a></li>
-            <li><a href="3-rd%20pool/4/filter.html">3-rd pool / 4 / filter.html</a></li>
-            <li><a href="3-rd%20pool/4/register.html">3-rd pool / 4 / register.html</a></li>
-            <li><a href="3-rd%20pool/4/survey.html">3-rd pool / 4 / survey.html</a></li>
-          </ul>
-
-          <p class="section-title">Задание 5</p>
-          <ul>
-            <li><a href="3-rd%20pool/5/box-model.html">3-rd pool / 5 / box-model.html</a></li>
-            <li><a href="3-rd%20pool/5/cards.html">3-rd pool / 5 / cards.html</a></li>
-            <li><a href="3-rd%20pool/5/resume-styled.html">3-rd pool / 5 / resume-styled.html</a></li>
-            <li><a href="3-rd%20pool/5/style.css">3-rd pool / 5 / style.css</a></li>
-          </ul>
-
-          <p class="section-title">Задание 6</p>
-          <ul>
-            <li><a href="3-rd%20pool/6/box-sizing.html">3-rd pool / 6 / box-sizing.html</a></li>
-            <li><a href="3-rd%20pool/6/cards-8.html">3-rd pool / 6 / cards-8.html</a></li>
-            <li><a href="3-rd%20pool/6/catalog.html">3-rd pool / 6 / catalog.html</a></li>
-            <li><a href="3-rd%20pool/6/display.html">3-rd pool / 6 / display.html</a></li>
-            <li><a href="3-rd%20pool/6/overflow.html">3-rd pool / 6 / overflow.html</a></li>
-          </ul>
-
-          <p class="section-title">Задание 7 — Flexbox</p>
-          <ul>
-            <li><a href="3-rd%20pool/7/flex7-1-header.html">3-rd pool / 7 / flex7-1-header.html</a></li>
-            <li><a href="3-rd%20pool/7/flex7-2-center.html">3-rd pool / 7 / flex7-2-center.html</a></li>
-            <li><a href="3-rd%20pool/7/flex7-3-cards.html">3-rd pool / 7 / flex7-3-cards.html</a></li>
-            <li><a href="3-rd%20pool/7/flex7-4-team.html">3-rd pool / 7 / flex7-4-team.html</a></li>
-            <li><a href="3-rd%20pool/7/flex7-5-toolbar.html">3-rd pool / 7 / flex7-5-toolbar.html</a></li>
-          </ul>
-
-          <p class="section-title">Задание 8 — Flexbox</p>
-          <ul>
-            <li><a href="3-rd%20pool/8/flex8-1-header.html">3-rd pool / 8 / flex8-1-header.html</a></li>
-            <li><a href="3-rd%20pool/8/flex8-2-toolbar.html">3-rd pool / 8 / flex8-2-toolbar.html</a></li>
-            <li><a href="3-rd%20pool/8/flex8-3-product.html">3-rd pool / 8 / flex8-3-product.html</a></li>
-            <li><a href="3-rd%20pool/8/flex8-4-cabinet.html">3-rd pool / 8 / flex8-4-cabinet.html</a></li>
-            <li><a href="3-rd%20pool/8/flex8-5-rows.html">3-rd pool / 8 / flex8-5-rows.html</a></li>
-          </ul>
-        </div>
-      </details>
-
-      <details>
-        <summary>Практика-1</summary>
-        <div class="content">
-          <p class="section-title">Документы</p>
-          <ul>
-            <li>01 Текст с форматированием.doc</li>
-            <li>02 Линейки.doc</li>
-            <li>03 Спец. символы.doc</li>
-            <li>04 Изображения и заголовки.doc</li>
-            <li>05 Многоуровневый список.doc</li>
-            <li>06 Гиперссылки.doc</li>
-          </ul>
-
-          <p class="section-title">Изображения для HTML</p>
-          <ul>
-            <li>pictures for HTML/knopka.gif</li>
-            <li>pictures for HTML/treug.gif</li>
-            <li>pictures for HTML/7chudes/...</li>
-            <li>pictures for HTML/ssilki/...</li>
-          </ul>
-        </div>
-      </details>
-
-      <details>
-        <summary>Практика-2</summary>
-        <div class="content">
-          <p class="section-title">Документы</p>
-          <ul>
-            <li>07 Изображения-карты.doc</li>
-            <li>08 Таблицы.doc</li>
-            <li>9 Вложенная таблица.doc</li>
-            <li>10 Формы.doc</li>
-          </ul>
-        </div>
-      </details>
-
-    </main>
-
-    <footer class="footer">
-      Сделано для удобного просмотра заданий через GitHub Pages.
-    </footer>
+  <div class="loading-screen" id="loading">
+    <div class="loading-logo">⊞</div>
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Запуск Windows 12...</div>
   </div>
+
+  <div class="lock-screen" id="lock-screen">
+    <div class="lock-bg"></div>
+    <div class="lock-content">
+      <div class="lock-time" id="lock-time">00:00</div>
+      <div class="lock-date" id="lock-date">--</div>
+      <div class="lock-hint">Нажмите, чтобы войти</div>
+    </div>
+  </div>
+
+  <div class="desktop" id="desktop">
+    <div class="desktop-wallpaper"></div>
+    <div class="desktop-icons" id="desktop-icons"></div>
+  </div>
+
+  <div class="start-menu" id="start-menu">
+    <div class="start-top">
+      <div class="start-search">
+        <div class="search-icon">🔍</div>
+        <input type="text" placeholder="Поиск приложений..." id="start-search-input">
+      </div>
+    </div>
+    <div class="start-apps" id="start-apps"></div>
+    <div class="start-bottom">
+      <div class="start-user">
+        <div class="user-avatar">👤</div>
+        <div class="user-name">Студент</div>
+      </div>
+      <div class="start-power" id="power-btn" title="Заблокировать">⏻</div>
+    </div>
+  </div>
+
+  <div class="taskbar" id="taskbar">
+    <div class="taskbar-center" id="taskbar-center"></div>
+    <div class="taskbar-divider"></div>
+    <div class="taskbar-tray" id="taskbar-tray">
+      <div class="tray-icon">🔊</div>
+      <div class="tray-icon">📶</div>
+      <div class="taskbar-time">
+        <div class="tray-time" id="tray-time">00:00</div>
+        <div class="tray-date" id="tray-date">--</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="windows-container"></div>
+  <div class="context-menu" id="context-menu"></div>
+
+  <div class="widget-panel" id="widget-panel">
+    <div class="widget-card">
+      <div class="widget-card-title">🌤 Погода</div>
+      <div class="widget-card-value">22°C</div>
+      <div class="widget-card-sub">Малооблачно</div>
+    </div>
+    <div class="widget-card">
+      <div class="widget-card-title">📅 Сегодня</div>
+      <div class="widget-card-value" id="widget-date">--</div>
+      <div class="widget-card-sub" id="widget-time">--</div>
+    </div>
+    <div class="widget-card">
+      <div class="widget-card-title">⚡ Быстрые действия</div>
+      <div class="quick-actions">
+        <div class="quick-action-btn" data-action="wifi"><div class="qa-icon">📶</div><div class="qa-label">WiFi</div></div>
+        <div class="quick-action-btn" data-action="bluetooth"><div class="qa-icon">📱</div><div class="qa-label">Bluetooth</div></div>
+        <div class="quick-action-btn" data-action="airplane"><div class="qa-icon">✈️</div><div class="qa-label">В самолёте</div></div>
+        <div class="quick-action-btn" data-action="nightlight"><div class="qa-icon">🌙</div><div class="qa-label">Ночь</div></div>
+        <div class="quick-action-btn" data-action="focus"><div class="qa-icon">🎯</div><div class="qa-label">Фокус</div></div>
+        <div class="quick-action-btn" data-action="battery"><div class="qa-icon">🔋</div><div class="qa-label">Батарея</div></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===== Файловая система: все работы (папки -> файлы) =====
+    const FS = [
+      { name: '4-th pool — JavaScript', icon: '📁', children: [
+        { name: 'Блок 1. Основы', icon: '📄', path: '4-th pool/01-osnovy/index.html' },
+        { name: 'Блок 2. Функции и циклы', icon: '📄', path: '4-th pool/02-funkcii-i-cikly/index.html' },
+        { name: 'Блок 3. Массивы', icon: '📄', path: '4-th pool/03-massivy/index.html' },
+        { name: 'Блок 4. Объекты', icon: '📄', path: '4-th pool/04-obyekty/index.html' },
+        { name: 'Блок 5. Работа с данными', icon: '📄', path: '4-th pool/05-rabota-s-dannymi/index.html' },
+        { name: 'Блок 6. DOM', icon: '📄', path: '4-th pool/06-dom/index.html' },
+        { name: 'Блок 7. События', icon: '📄', path: '4-th pool/07-sobytiya/index.html' },
+      ]},
+      { name: '3-rd pool — HTML/CSS', icon: '📁', children: [
+        { name: 'Задание 1', icon: '📁', children: [
+          { name: 'index.html', path: '3-rd pool/1/index.html' },
+        ]},
+        { name: 'Задание 2', icon: '📁', children: [
+          { name: 'resume.html', path: '3-rd pool/2/resume.html' },
+        ]},
+        { name: 'Задание 3', icon: '📁', children: [
+          { name: 'news.html', path: '3-rd pool/3/news.html' },
+          { name: 'personal-site.html', path: '3-rd pool/3/personal-site.html' },
+          { name: 'resume-yaromir.html', path: '3-rd pool/3/resume-yaromir.html' },
+        ]},
+        { name: 'Задание 4', icon: '📁', children: [
+          { name: 'feedback.html', path: '3-rd pool/4/feedback.html' },
+          { name: 'filter.html', path: '3-rd pool/4/filter.html' },
+          { name: 'register.html', path: '3-rd pool/4/register.html' },
+          { name: 'survey.html', path: '3-rd pool/4/survey.html' },
+        ]},
+        { name: 'Задание 5', icon: '📁', children: [
+          { name: 'box-model.html', path: '3-rd pool/5/box-model.html' },
+          { name: 'cards.html', path: '3-rd pool/5/cards.html' },
+          { name: 'resume-styled.html', path: '3-rd pool/5/resume-styled.html' },
+        ]},
+        { name: 'Задание 6', icon: '📁', children: [
+          { name: 'box-sizing.html', path: '3-rd pool/6/box-sizing.html' },
+          { name: 'cards-8.html', path: '3-rd pool/6/cards-8.html' },
+          { name: 'catalog.html', path: '3-rd pool/6/catalog.html' },
+          { name: 'display.html', path: '3-rd pool/6/display.html' },
+          { name: 'overflow.html', path: '3-rd pool/6/overflow.html' },
+        ]},
+        { name: 'Задание 7 — Flexbox', icon: '📁', children: [
+          { name: 'flex7-1-header.html', path: '3-rd pool/7/flex7-1-header.html' },
+          { name: 'flex7-2-center.html', path: '3-rd pool/7/flex7-2-center.html' },
+          { name: 'flex7-3-cards.html', path: '3-rd pool/7/flex7-3-cards.html' },
+          { name: 'flex7-4-team.html', path: '3-rd pool/7/flex7-4-team.html' },
+          { name: 'flex7-5-toolbar.html', path: '3-rd pool/7/flex7-5-toolbar.html' },
+        ]},
+        { name: 'Задание 8 — Flexbox', icon: '📁', children: [
+          { name: 'flex8-1-header.html', path: '3-rd pool/8/flex8-1-header.html' },
+          { name: 'flex8-2-toolbar.html', path: '3-rd pool/8/flex8-2-toolbar.html' },
+          { name: 'flex8-3-product.html', path: '3-rd pool/8/flex8-3-product.html' },
+          { name: 'flex8-4-cabinet.html', path: '3-rd pool/8/flex8-4-cabinet.html' },
+          { name: 'flex8-5-rows.html', path: '3-rd pool/8/flex8-5-rows.html' },
+        ]},
+        { name: 'Задание 9 — Grid', icon: '📁', children: [
+          { name: 'grid9-1-catalog.html', path: '3-rd pool/9/grid9-1-catalog.html' },
+          { name: 'grid9-2-gallery.html', path: '3-rd pool/9/grid9-2-gallery.html' },
+          { name: 'grid9-3-homepage.html', path: '3-rd pool/9/grid9-3-homepage.html' },
+          { name: 'grid9-4-dashboard.html', path: '3-rd pool/9/grid9-4-dashboard.html' },
+          { name: 'grid9-5-gridflex.html', path: '3-rd pool/9/grid9-5-gridflex.html' },
+        ]},
+      ]},
+      { name: '1–10 HTML', icon: '📁', children: [
+        { name: '1.html', icon: '📄', path: '1.html' },
+        { name: '2.html', icon: '📄', path: '2.html' },
+        { name: '3.html', icon: '📄', path: '3.html' },
+        { name: '4.html', icon: '📄', path: '4.html' },
+        { name: '5.html', icon: '📄', path: '5.html' },
+        { name: '6.html', icon: '📄', path: '6.html' },
+        { name: '7.html', icon: '📄', path: '7.html' },
+        { name: '8.html', icon: '📄', path: '8.html' },
+        { name: '9.html', icon: '📄', path: '9.html' },
+        { name: '10.html', icon: '📄', path: '10.html' },
+      ]},
+      { name: 'Карты и картинки', icon: '📁', children: [
+        { name: 'Карта1.htm', icon: '🗺️', path: 'Карта1.htm' },
+        { name: 'Карта2.htm', icon: '🗺️', path: 'Карта2.htm' },
+        { name: 'Карта3.htm', icon: '🗺️', path: 'Карта3.htm' },
+        { name: 'Картинка1.htm', icon: '🖼️', path: 'Картинка1.htm' },
+        { name: 'Картинка2.htm', icon: '🖼️', path: 'Картинка2.htm' },
+        { name: 'Картинка3.htm', icon: '🖼️', path: 'Картинка3.htm' },
+      ]},
+    ];
+
+    // ===== Приложения (рабочий стол + меню Пуск) =====
+    const APPS = [
+      { id: 'explorer', name: 'Проводник', icon: '📁' },
+      { id: 'browser', name: 'Браузер', icon: '🌐' },
+      { id: 'settings', name: 'Параметры', icon: '⚙️' },
+      { id: 'notepad', name: 'Блокнот', icon: '📝' },
+      { id: 'calculator', name: 'Калькулятор', icon: '🧮' },
+      { id: 'terminal', name: 'Терминал', icon: '💻' },
+      { id: 'photos', name: 'Фотографии', icon: '🖼️' },
+      { id: 'mail', name: 'Почта', icon: '📧' },
+      { id: 'music', name: 'Музыка', icon: '🎵' },
+      { id: 'video', name: 'Видео', icon: '🎬' },
+      { id: 'store', name: 'Магазин', icon: '🛒' },
+      { id: 'games', name: 'Игры', icon: '🎮' },
+      { id: 'maps', name: 'Карты', icon: '🗺️' },
+      { id: 'calendar', name: 'Календарь', icon: '📅' },
+      { id: 'weather', name: 'Погода', icon: '🌤️' },
+      { id: 'clock', name: 'Часы', icon: '🕐' },
+      { id: 'notes', name: 'Заметки', icon: '📓' },
+      { id: 'recycle', name: 'Корзина', icon: '🗑️' },
+    ];
+
+    const DESKTOP_APPS = ['explorer', 'browser', 'settings', 'notepad', 'calculator', 'recycle'];
+
+    let windows = [];
+    let winSeq = 0;
+    let zTop = 100;
+    let activeWindowId = null;
+    let dragData = null;
+
+    const getStartMenu = () => document.getElementById('start-menu');
+    const getWindowsContainer = () => document.getElementById('windows-container');
+    const getContextMenu = () => document.getElementById('context-menu');
+
+    // ===== Часы =====
+    function updateClock() {
+      const now = new Date();
+      const t = now.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+      const d = now.toLocaleDateString('ru-RU', { weekday: 'short', day: 'numeric', month: 'short' });
+      const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+      set('lock-time', t); set('lock-date', d);
+      set('tray-time', t); set('tray-date', d);
+      set('widget-time', t); set('widget-date', d);
+    }
+
+    // ===== Меню Пуск =====
+    function toggleStartMenu() { getStartMenu().classList.toggle('visible'); }
+    function closeStartMenu() { getStartMenu().classList.remove('visible'); }
+
+    function renderStartApps(filter = '') {
+      const q = filter.trim().toLowerCase();
+      const list = q ? APPS.filter(a => a.name.toLowerCase().includes(q)) : APPS;
+      const container = document.getElementById('start-apps');
+      container.innerHTML = list.map(app => `
+        <div class="start-app" data-appid="${app.id}">
+          <span class="app-icon">${app.icon}</span>
+          <span class="app-name">${app.name}</span>
+        </div>`).join('');
+      container.querySelectorAll('.start-app').forEach(item => {
+        item.onclick = () => openApp(APPS.find(a => a.id === item.dataset.appid));
+      });
+    }
+
+    // ===== Рабочий стол =====
+    function renderDesktopIcons() {
+      const wrap = document.getElementById('desktop-icons');
+      wrap.innerHTML = '';
+      APPS.filter(a => DESKTOP_APPS.includes(a.id)).forEach(app => {
+        const icon = document.createElement('div');
+        icon.className = 'desktop-icon';
+        icon.innerHTML = `<div class="di-icon">${app.icon}</div><div class="di-name">${app.name}</div>`;
+        icon.ondblclick = () => openApp(app);
+        wrap.appendChild(icon);
+      });
+    }
+
+    // ===== Окна =====
+    function createWindow({ title, icon = '🪟', bodyHTML, width = 820, height = 560, appId = null }) {
+      winSeq++;
+      const id = winSeq;
+      const el = document.createElement('div');
+      el.className = 'window';
+      el.id = 'win-' + id;
+      el.style.width = width + 'px';
+      el.style.height = height + 'px';
+      const offset = (windows.length % 6) * 26;
+      el.style.left = Math.max(20, Math.round((window.innerWidth - width) / 2) + offset) + 'px';
+      el.style.top = Math.max(20, Math.round((window.innerHeight - height) / 2) - 40 + offset) + 'px';
+      el.innerHTML = `
+        <div class="window-header">
+          <div class="window-title"><span class="window-title-icon">${icon}</span><span>${title}</span></div>
+          <div class="window-controls">
+            <div class="window-ctrl-btn" data-act="min" title="Свернуть">—</div>
+            <div class="window-ctrl-btn" data-act="max" title="Развернуть">▢</div>
+            <div class="window-ctrl-btn close" data-act="close" title="Закрыть">✕</div>
+          </div>
+        </div>
+        <div class="window-body">${bodyHTML}</div>`;
+      getWindowsContainer().appendChild(el);
+
+      const win = { id, element: el, appId, title, icon, minimized: false, maximized: false, prevRect: null, taskbarBtn: null };
+      windows.push(win);
+
+      el.querySelector('[data-act="min"]').onclick = e => { e.stopPropagation(); minimizeWindow(id); };
+      el.querySelector('[data-act="max"]').onclick = e => { e.stopPropagation(); toggleMaximize(id); };
+      el.querySelector('[data-act="close"]').onclick = e => { e.stopPropagation(); closeWindow(id); };
+      el.addEventListener('mousedown', () => focusWindow(id));
+
+      addTaskbarButton(win);
+      focusWindow(id);
+      return win;
+    }
+
+    function focusWindow(id) {
+      const win = windows.find(w => w.id === id);
+      if (!win) return;
+      zTop++;
+      win.element.style.zIndex = zTop;
+      windows.forEach(w => w.element.classList.toggle('focused', w.id === id));
+      if (win.minimized) { win.minimized = false; win.element.style.display = 'flex'; }
+      activeWindowId = id;
+      windows.forEach(w => w.taskbarBtn && w.taskbarBtn.classList.toggle('active', w.id === id));
+    }
+
+    function minimizeWindow(id) {
+      const win = windows.find(w => w.id === id);
+      if (!win) return;
+      win.minimized = true;
+      win.element.style.display = 'none';
+      win.element.classList.remove('focused');
+      win.taskbarBtn && win.taskbarBtn.classList.remove('active');
+    }
+
+    function toggleMaximize(id) {
+      const win = windows.find(w => w.id === id);
+      if (!win) return;
+      const el = win.element;
+      if (!win.maximized) {
+        win.prevRect = { left: el.style.left, top: el.style.top, width: el.style.width, height: el.style.height };
+        el.style.left = '0'; el.style.top = '0';
+        el.style.width = '100vw'; el.style.height = 'calc(100vh - 80px)';
+        el.classList.add('maximized');
+        win.maximized = true;
+      } else {
+        Object.assign(el.style, win.prevRect);
+        el.classList.remove('maximized');
+        win.maximized = false;
+      }
+      focusWindow(id);
+    }
+
+    function closeWindow(id) {
+      const i = windows.findIndex(w => w.id === id);
+      if (i === -1) return;
+      windows[i].element.remove();
+      windows[i].taskbarBtn && windows[i].taskbarBtn.remove();
+      windows.splice(i, 1);
+    }
+
+    // ===== Кнопки запущенных окон на панели задач =====
+    function addTaskbarButton(win) {
+      const center = document.getElementById('taskbar-center');
+      const btn = document.createElement('div');
+      btn.className = 'taskbar-btn';
+      btn.innerHTML = win.icon;
+      btn.title = win.title;
+      btn.onclick = e => {
+        e.stopPropagation();
+        if (win.minimized || activeWindowId !== win.id) focusWindow(win.id);
+        else minimizeWindow(win.id);
+      };
+      center.appendChild(btn);
+      win.taskbarBtn = btn;
+    }
+
+    // ===== Запуск приложений =====
+    function openApp(app) {
+      if (!app) return;
+      closeStartMenu();
+      const existing = windows.find(w => w.appId === app.id);
+      if (existing) { focusWindow(existing.id); return; }
+      const size = app.id === 'explorer' ? { width: 860, height: 560 } : { width: 760, height: 520 };
+      const win = createWindow({ title: app.name, icon: app.icon, appId: app.id, bodyHTML: getAppContent(app.id), ...size });
+      if (app.id === 'explorer') initExplorer(win.element);
+    }
+
+    function getAppContent(id) {
+      switch (id) {
+        case 'explorer':
+          return `
+            <div class="file-explorer">
+              <div class="fe-sidebar">
+                <div class="fe-sidebar-item active" data-nav="root"><span class="fe-icon">💻</span><span class="fe-label">Этот компьютер</span></div>
+                ${FS.map((node, i) => `<div class="fe-sidebar-item" data-nav="${i}"><span class="fe-icon">${node.icon || '📁'}</span><span class="fe-label">${node.name}</span></div>`).join('')}
+              </div>
+              <div class="fe-pane">
+                <div class="fe-topbar">
+                  <div class="fe-nav">
+                    <button class="fe-navbtn fe-back" title="Назад">←</button>
+                    <button class="fe-navbtn fe-up" title="Вверх">↑</button>
+                  </div>
+                  <div class="fe-breadcrumb"></div>
+                </div>
+                <div class="fe-hint">Открывайте папки и нажимайте на работу — она запустится в окне. Здесь все задания: 4-th и 3-rd pool, 1–10 и карты.</div>
+                <div class="fe-main"></div>
+              </div>
+            </div>`;
+        case 'browser':
+          return `
+            <div class="browser">
+              <div class="browser-toolbar">
+                <div class="browser-nav-btn">←</div>
+                <div class="browser-nav-btn">→</div>
+                <div class="browser-nav-btn">↻</div>
+                <div class="browser-url">https://</div>
+              </div>
+              <div class="browser-content">
+                <div class="browser-home">
+                  <div class="browser-logo">🌐</div>
+                  <div style="font-size:18px;color:white">Браузер</div>
+                  <div style="margin:10px 0 24px">Быстро. Надёжно.</div>
+                  <div style="font-size:13px">Введите адрес или поисковый запрос</div>
+                </div>
+              </div>
+            </div>`;
+        case 'settings':
+          return `
+            <div class="settings">
+              <div class="settings-nav">
+                <div class="settings-nav-item active"><span class="sni-icon">🎨</span>Персонализация</div>
+                <div class="settings-nav-item"><span class="sni-icon">👤</span>Учётные записи</div>
+                <div class="settings-nav-item"><span class="sni-icon">🌐</span>Сеть</div>
+                <div class="settings-nav-item"><span class="sni-icon">⚙️</span>Приложения</div>
+                <div class="settings-nav-item"><span class="sni-icon">🔒</span>Конфиденциальность</div>
+                <div class="settings-nav-item"><span class="sni-icon">🔄</span>Обновление</div>
+              </div>
+              <div class="settings-content">
+                <div class="settings-title">Персонализация</div>
+                <div class="settings-card">
+                  <div class="settings-row">
+                    <div><div class="settings-label">Тёмная тема</div><div class="settings-sublabel">Адаптивные цвета</div></div>
+                    <div class="toggle on"></div>
+                  </div>
+                  <div class="settings-row">
+                    <div><div class="settings-label">Акцентный цвет</div><div class="settings-sublabel">Цвет Windows</div></div>
+                    <div class="toggle"></div>
+                  </div>
+                </div>
+                <div class="settings-card">
+                  <div class="settings-row">
+                    <div><div class="settings-label">Эффекты прозрачности</div><div class="settings-sublabel">Эффект Mica</div></div>
+                    <div class="toggle on"></div>
+                  </div>
+                </div>
+              </div>
+            </div>`;
+        default:
+          const app = APPS.find(a => a.id === id);
+          return `<div class="app-placeholder"><div class="ph-icon">${app ? app.icon : '📦'}</div><div>${app ? app.name : ''}</div><div style="font-size:12px">Демонстрационное приложение</div></div>`;
+      }
+    }
+
+    // ===== Проводник: навигация по дереву работ =====
+    function initExplorer(root) {
+      const main = root.querySelector('.fe-main');
+      const crumb = root.querySelector('.fe-breadcrumb');
+      const backBtn = root.querySelector('.fe-back');
+      const upBtn = root.querySelector('.fe-up');
+
+      let loc = [];      // путь индексов; [] = корень («Этот компьютер»)
+      let history = [];  // история для кнопки «Назад»
+
+      function nodeAt(path) {
+        let node = { name: 'Этот компьютер', children: FS };
+        for (const idx of path) node = node.children[idx];
+        return node;
+      }
+      function childrenAt(path) {
+        return path.length === 0 ? FS : (nodeAt(path).children || []);
+      }
+
+      function render() {
+        const items = childrenAt(loc);
+
+        // хлебные крошки
+        let html = `<span class="fe-crumb" data-depth="0">💻 Этот компьютер</span>`;
+        const acc = [];
+        loc.forEach((idx, i) => {
+          acc.push(idx);
+          html += `<span>›</span><span class="fe-crumb" data-depth="${i + 1}">${escapeHtml(nodeAt(acc.slice()).name)}</span>`;
+        });
+        crumb.innerHTML = html;
+
+        // элементы текущей папки
+        main.innerHTML = items.map((node, idx) => {
+          const icon = node.icon || (node.children ? '📁' : '🌐');
+          return `<div class="fe-item" data-idx="${idx}"><span class="fe-item-icon">${icon}</span><div class="fe-item-name">${escapeHtml(node.name)}</div></div>`;
+        }).join('') || `<div class="fe-empty">Папка пуста</div>`;
+
+        main.querySelectorAll('.fe-item').forEach(el => {
+          el.onclick = () => {
+            const idx = Number(el.dataset.idx);
+            const node = items[idx];
+            if (node.children) { history.push(loc.slice()); loc.push(idx); render(); }
+            else if (node.path) { openFrame(node.path, node.name); }
+          };
+        });
+        crumb.querySelectorAll('.fe-crumb').forEach(el => {
+          el.onclick = () => { history.push(loc.slice()); loc = loc.slice(0, Number(el.dataset.depth)); render(); };
+        });
+
+        upBtn.disabled = loc.length === 0;
+        backBtn.disabled = history.length === 0;
+
+        root.querySelectorAll('.fe-sidebar-item').forEach(it => {
+          const nav = it.dataset.nav;
+          const active = (nav === 'root' && loc.length === 0) || (loc.length >= 1 && String(loc[0]) === nav);
+          it.classList.toggle('active', active);
+        });
+      }
+
+      backBtn.onclick = () => { if (history.length) { loc = history.pop(); render(); } };
+      upBtn.onclick = () => { if (loc.length) { history.push(loc.slice()); loc = loc.slice(0, -1); render(); } };
+
+      root.querySelectorAll('.fe-sidebar-item').forEach(it => {
+        it.onclick = () => {
+          history.push(loc.slice());
+          loc = it.dataset.nav === 'root' ? [] : [Number(it.dataset.nav)];
+          render();
+        };
+      });
+
+      render();
+    }
+
+    // ===== Экранирование для вставки в HTML =====
+    function escapeHtml(s) {
+      return String(s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    // ===== Открыть файл-работу в окне (iframe) =====
+    function openFrame(path, title) {
+      const url = encodeURI(path); // кодируем пробелы («4-th pool») и кириллицу
+      createWindow({
+        title: title,
+        icon: '🌐',
+        width: 980,
+        height: 660,
+        bodyHTML: `
+          <div class="work-view">
+            <div class="work-toolbar">
+              <span class="work-path">${escapeHtml(path)}</span>
+              <a class="work-open" href="${url}" target="_blank" rel="noopener">Открыть в новой вкладке ↗</a>
+            </div>
+            <iframe class="work-frame" src="${url}" title="${escapeHtml(title)}"></iframe>
+          </div>`
+      });
+    }
+
+    // ===== Перетаскивание окон =====
+    function initDragging() {
+      getWindowsContainer().addEventListener('mousedown', e => {
+        const header = e.target.closest('.window-header');
+        if (!header) return;
+        if (e.target.closest('.window-controls')) return;
+        const winEl = header.closest('.window');
+        const win = windows.find(w => w.element === winEl);
+        if (!win || win.maximized) return;
+        focusWindow(win.id);
+        dragData = { el: winEl, sx: e.clientX, sy: e.clientY, sl: winEl.offsetLeft, st: winEl.offsetTop };
+        document.body.classList.add('dragging');
+        e.preventDefault();
+      });
+
+      document.addEventListener('mousemove', e => {
+        if (!dragData) return;
+        let left = dragData.sl + (e.clientX - dragData.sx);
+        let top = dragData.st + (e.clientY - dragData.sy);
+        left = Math.min(window.innerWidth - 80, Math.max(-(dragData.el.offsetWidth - 120), left));
+        top = Math.min(window.innerHeight - 90, Math.max(0, top));
+        dragData.el.style.left = left + 'px';
+        dragData.el.style.top = top + 'px';
+      });
+
+      document.addEventListener('mouseup', () => {
+        dragData = null;
+        document.body.classList.remove('dragging');
+      });
+    }
+
+    // ===== Контекстное меню =====
+    function wireContextMenu() {
+      document.addEventListener('contextmenu', e => {
+        if (e.target.closest('.window')) return; // обычное меню внутри окон/работ
+        e.preventDefault();
+        const menu = getContextMenu();
+        menu.innerHTML = `
+          <div class="ctx-item" data-act="explorer">📁 Открыть проводник</div>
+          <div class="ctx-item" data-act="refresh">🔄 Обновить</div>
+          <div class="ctx-sep"></div>
+          <div class="ctx-item" data-act="settings">⚙️ Параметры</div>
+          <div class="ctx-item" data-act="lock">🔒 Заблокировать</div>`;
+        const mw = 220, mh = 160;
+        menu.style.left = Math.min(e.pageX, window.innerWidth - mw) + 'px';
+        menu.style.top = Math.min(e.pageY, window.innerHeight - mh) + 'px';
+        menu.classList.add('visible');
+        menu.querySelectorAll('.ctx-item').forEach(item => {
+          item.onclick = () => {
+            const act = item.dataset.act;
+            menu.classList.remove('visible');
+            if (act === 'explorer') openApp(APPS.find(a => a.id === 'explorer'));
+            else if (act === 'refresh') location.reload();
+            else if (act === 'settings') openApp(APPS.find(a => a.id === 'settings'));
+            else if (act === 'lock') document.getElementById('lock-screen').classList.remove('hidden');
+          };
+        });
+      });
+      document.addEventListener('click', () => getContextMenu().classList.remove('visible'));
+    }
+
+    // ===== Глобальные обработчики закрытия =====
+    function wireGlobalClose() {
+      document.addEventListener('click', e => {
+        const sm = getStartMenu();
+        if (sm.classList.contains('visible') && !sm.contains(e.target) && !e.target.closest('#start-btn')) {
+          closeStartMenu();
+        }
+      });
+    }
+
+    // ===== Инициализация =====
+    function init() {
+      setTimeout(() => document.getElementById('loading').classList.add('hidden'), 1500);
+
+      updateClock();
+      setInterval(updateClock, 1000);
+
+      const lock = document.getElementById('lock-screen');
+      lock.addEventListener('click', () => {
+        lock.classList.add('hidden');
+        if (!lock.dataset.opened) {
+          lock.dataset.opened = '1';
+          setTimeout(() => openApp(APPS.find(a => a.id === 'explorer')), 350);
+        }
+      });
+
+      renderDesktopIcons();
+
+      // Кнопка Пуск
+      const startBtn = document.createElement('div');
+      startBtn.className = 'taskbar-btn start-btn';
+      startBtn.id = 'start-btn';
+      startBtn.innerHTML = '⊞';
+      startBtn.title = 'Пуск';
+      startBtn.onclick = e => { e.stopPropagation(); toggleStartMenu(); };
+      document.getElementById('taskbar-center').appendChild(startBtn);
+
+      renderStartApps();
+      document.getElementById('start-search-input').oninput = e => renderStartApps(e.target.value);
+
+      document.getElementById('taskbar-tray').addEventListener('click', () => {
+        document.getElementById('widget-panel').classList.toggle('visible');
+      });
+
+      document.getElementById('power-btn').onclick = () => {
+        closeStartMenu();
+        document.getElementById('lock-screen').classList.remove('hidden');
+      };
+
+      // Быстрые действия в виджетах
+      document.addEventListener('click', e => {
+        const b = e.target.closest('.quick-action-btn');
+        if (b) b.classList.toggle('active');
+      });
+
+      wireContextMenu();
+      wireGlobalClose();
+      initDragging();
+    }
+
+    init();
+  </script>
 </body>
 </html>
